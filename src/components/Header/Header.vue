@@ -3,11 +3,11 @@
         <div class="header__title">
             <p>vue-weather-v3</p>
         </div>
-        <figure class="header__menu-icon" @click="handleIsOpenClick">
+        <figure class="header__menu-icon" @click="toggleIsOpen">
             <img src="../../assets/icons/menu_icon.png" alt="menu-icon"/>
         </figure>
     </header>
-    <Drawer v-if="isOpen" />
+    <Drawer v-if="isOpen" :isOpen="isOpen" @toggleIsOpen="toggleIsOpen" />
 </template>
 
 <script>
@@ -19,13 +19,13 @@
         components: {Drawer},
         setup() {
             const isOpen = ref(false);
-            const handleIsOpenClick = () => {
+            const toggleIsOpen = () => {
                 isOpen.value = !isOpen.value;
             }
 
             return {
                 isOpen,
-                handleIsOpenClick,
+                toggleIsOpen,
             }
         }
     })

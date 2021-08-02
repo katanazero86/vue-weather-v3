@@ -1,13 +1,9 @@
 <template>
     <div class="drawer">
-        <div class="drawer__overlay">
+        <div class="drawer__overlay" @click.self="handleOverlayClick">
             <ul class="drawer__nav">
-                <li class="item">
-                    <span>Home</span>
-                    <img src="../../assets/icons/arrow_right_icon.png" alt="arrow-right-icon"/>
-                </li>
-                <li class="item">
-                    <span>About</span>
+                <li class="item" @click="handleNavItemClick(navItem.path)" v-for="navItem in navItems" :key="navItem">
+                    <span>{{navItem.name}}</span>
                     <img src="../../assets/icons/arrow_right_icon.png" alt="arrow-right-icon"/>
                 </li>
             </ul>
@@ -20,8 +16,30 @@
 
     const Drawer = defineComponent({
         name: 'Drawer',
-        setup() {
-            return {}
+        props: {
+            isOpen: {type: Boolean, default: false, required: true}
+        },
+        emits: ['toggleIsOpen'],
+        setup({isOpen: boolean}, context) {
+
+            const navItems = [
+                {name: 'Home', path: '/'},
+                {name: 'About', path: '/about'}
+            ]
+
+            const handleNavItemClick = path => {
+                console.log(path);
+            }
+
+            const handleOverlayClick = () => {
+                context.emit('toggleIsOpen');
+            }
+
+            return {
+                navItems,
+                handleNavItemClick,
+                handleOverlayClick
+            }
         }
     })
     export default Drawer
