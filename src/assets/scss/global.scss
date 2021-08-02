@@ -1,3 +1,5 @@
+@charset "UTF-8";
+@import './common/mixins';
 
 .row {
   display: flex;
@@ -71,6 +73,25 @@
     justify-content: space-evenly;
   }
 }
+
+// render-cols(12column grid)
+
+@include responsive(desktop) {
+  @include render-col(''); // desktop
+}
+
+@include responsive(tablet) {
+  @include render-col('-sm'); // tablet
+}
+
+@include responsive(mobile) {
+  @include render-col('-xs'); // mobile
+}
+
+[class*="col-"] {
+  width: 100%;
+}
+
 
 
 .pa-1 {

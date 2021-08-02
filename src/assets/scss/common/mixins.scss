@@ -1,3 +1,38 @@
+@charset "UTF-8";
+@import './variables';
+@import './functions';
+
+@mixin responsive($type) {
+  @if $type == desktop {
+    @media screen and (min-width: $md) {
+      @content
+    }
+  } @else if $type == tablet {
+    @media screen and (max-width: $sm) {
+      @content
+    }
+  } @else {
+    @media screen and (max-width: $xs) {
+      @content
+    }
+  }
+}
+
+@mixin render-col($type) {
+  @for $i from 1 through $grid-cols-num {
+    // col-xs-1
+    // col-sm-1
+    // desktop : col-1
+    .col#{$type}-#{$i} {
+      flex-grow: 0;
+      flex-shrink: 0;
+      flex-basis: get-size($i);
+      max-width: get-size($i);
+    }
+  }
+}
+
+
 @mixin overlay-background {
   background-color: rgba(10, 10, 10, 0.3);
 }

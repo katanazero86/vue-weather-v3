@@ -25,3 +25,13 @@ npm i -D typescript
 ```
 npm i -S vue-router@next
 ```
+
+
+- scss 나누기 연산이 최신버전에서는 없어진다고 하여 아래와 같이 해결
+```
+npm install -g sass-migrator
+sass-migrator division **/*.scss
+
+scss 부분
+100% / 1 -> math.div(100%, $grid-cols-num);
+```
