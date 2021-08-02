@@ -46,9 +46,12 @@
 </script>
 
 <style lang="scss" scoped>
+
+    @import '../../assets/scss/common/mixins';
+
     .drawer {
         &__overlay {
-            background-color: rgba(10, 10, 10, 0.3);
+            @include overlay-background();
             position: fixed;
             top: 0;
             bottom: 0;
