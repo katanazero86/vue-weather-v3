@@ -19,10 +19,18 @@
 }
 
 @mixin render-col($type) {
+
+  .col#{$type} {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+  }
+
   @for $i from 1 through $grid-cols-num {
     // col-xs-1
     // col-sm-1
     // desktop : col-1
+
     .col#{$type}-#{$i} {
       flex-grow: 0;
       flex-shrink: 0;
