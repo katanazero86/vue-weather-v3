@@ -7,7 +7,9 @@
             <img src="../../assets/icons/menu_icon.png" alt="menu-icon"/>
         </figure>
     </header>
-    <Drawer v-if="isOpen" :isOpen="isOpen" @toggleIsOpen="toggleIsOpen" />
+    <transition name="fade">
+        <Drawer v-if="isOpen" :isOpen="isOpen" @toggleIsOpen="toggleIsOpen" />
+    </transition>
 </template>
 
 <script>
