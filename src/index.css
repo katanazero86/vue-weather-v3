@@ -1,6 +1,6 @@
 #app {
   height: 100%;
-  overflow: auto;
+  min-width: 370px;
 }
 
 .fade-enter-active,
