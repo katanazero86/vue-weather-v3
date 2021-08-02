@@ -13,6 +13,7 @@
     export default Index
 </script>
 
+<style lang="scss" src="../assets/scss/global.scss"/>
 <style lang="scss" scoped>
 
     .index {

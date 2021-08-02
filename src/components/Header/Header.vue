@@ -1,5 +1,5 @@
 <template>
-    <header class="header">
+    <header class="header row align-items-center justify-contents-between pa-4">
         <div class="header__title">
             <p>vue-weather-v3</p>
         </div>
@@ -36,13 +36,8 @@
 
 <style lang="scss" scoped>
 .header {
-    display: flex;
-    flex-direction: row;
-    border-bottom: 1px solid #f6f6f6;
-    align-items: center;
-    justify-content: space-between;
 
-    padding: 8px;
+    border-bottom: 1px solid #f6f6f6;
     position: relative;
 
     &__title {

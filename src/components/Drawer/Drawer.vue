@@ -1,8 +1,8 @@
 <template>
     <div class="drawer">
-        <div class="drawer__overlay" @click.self="handleOverlayClick">
-            <ul class="drawer__nav">
-                <li class="item" @click="handleNavItemClick(navItem.path)" v-for="navItem in navItems" :key="navItem">
+        <div class="drawer__overlay row justify-contents-end" @click.self="handleOverlayClick">
+            <ul class="drawer__nav px-2">
+                <li class="item row align-items-center justify-contents-between py-6 px-3" @click="handleNavItemClick(navItem.path)" v-for="navItem in navItems" :key="navItem">
                     <span>{{navItem.name}}</span>
                     <img src="../../assets/icons/arrow_right_icon.png" alt="arrow-right-icon"/>
                 </li>
@@ -56,24 +56,15 @@
             left: 0;
             overflow: hidden;
 
-            display: flex;
-            justify-content: flex-end;
-
             .drawer__nav {
                 background-color: #fcfcfc;
-                width: 250px;
+                width: 280px;
                 height: 100%;
                 overflow: auto;
-                padding: 12px 8px;
 
                 .item {
                     border-bottom: 1px solid #e7e7e7;
                     cursor: pointer;
-                    padding: 10px 0;
-
-                    display: flex;
-                    align-items: center;
-                    justify-content: space-between;
 
                     > span {
                         color: #333333;
