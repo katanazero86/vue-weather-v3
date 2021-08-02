@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="index">
         <router-view/>
     </div>
 </template>
@@ -13,6 +13,10 @@
     export default Index
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
+    .index {
+
+    }
 
 </style>
