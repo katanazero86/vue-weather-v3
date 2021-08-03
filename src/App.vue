@@ -11,3 +11,5 @@
 
     export default App
 </script>
+
+<style lang="scss" src="./assets/scss/global.scss"/>

@@ -11,17 +11,17 @@
 </template>
 
 <script lang="ts">
-   import {defineComponent} from 'vue';
+    import {defineComponent} from 'vue';
 
-   const Footer = defineComponent({
+    const Footer = defineComponent({
         name: 'Footer',
         setup() {
             const links = [
-                {name: 'GitHub', url : 'https://github.com/katanazero86/vue-weather-v3'}
+                {name: 'GitHub', url: 'https://github.com/katanazero86/vue-weather-v3'}
             ];
 
             const handleLinkClick = targetUrl => {
-                if(!targetUrl) return false;
+                if (!targetUrl) return false;
                 window.open(targetUrl, '_blank');
             };
 
@@ -32,7 +32,7 @@
         }
     });
 
-   export default Footer
+    export default Footer
 </script>
 
 <style lang="scss" scoped>
