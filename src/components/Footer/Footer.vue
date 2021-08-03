@@ -1,10 +1,10 @@
 <template>
   <footer class="footer row-wrap align-items-center justify-contents-between pa-5">
-    <section class="footer__description col-6 col-sm-12">
+    <section class="footer__description col-6 col-sm-12 my-5">
       <p>© 2021 vue-weather-v3 ® All rights reserved.</p>
       <p>Powered by katanazero86</p>
     </section>
-    <section class="footer__link col-6 col-sm-12">
+    <section class="footer__link col-6 col-sm-12 my-5">
       <span>GitHub</span>
     </section>
   </footer>
@@ -13,12 +13,14 @@
 <script lang="ts">
     import {defineComponent} from 'vue';
 
-    export default defineComponent({
+   const Footer = defineComponent({
         name: 'Footer',
         setup() {
 
         }
-    })
+    });
+
+   export default Footer
 </script>
 
 <style lang="scss" scoped>
@@ -32,7 +34,6 @@
     font-weight: 400;
     background-color: $background-color;
     color: $white-color;
-    border-top: 1px solid $border-color;
 
     &__description {
     }
