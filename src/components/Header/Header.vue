@@ -35,10 +35,17 @@
 </script>
 
 <style lang="scss" scoped>
+    @import '../../assets/scss/common/mixins';
+    @import '../../assets/scss/common/variables';
+
 .header {
 
-    border-bottom: 1px solid #f6f6f6;
+    @include box-shadow-3();
     position: relative;
+    background-color: $background-color;
+    color: $white-color;
+    height: 50px;
+
 
     &__title {
         > p {

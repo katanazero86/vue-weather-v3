@@ -48,6 +48,7 @@
 <style lang="scss" scoped>
 
     @import '../../assets/scss/common/mixins';
+    @import '../../assets/scss/common/variables';
 
     .drawer {
         &__overlay {
@@ -60,24 +61,24 @@
             overflow: hidden;
 
             .drawer__nav {
-                background-color: #fcfcfc;
+                background-color: $dark-color;
                 width: 280px;
                 height: 100%;
                 overflow: auto;
 
                 .item {
-                    border-bottom: 1px solid #e7e7e7;
+                    border-bottom: 1px solid $white-color;
                     cursor: pointer;
 
                     > span {
-                        color: #333333;
+                        color: $white-color;
                         font-size: 16px;
                         font-weight: 400;
                     }
 
                     > img {
-                        width: 18px;
-                        height: 18px;
+                        width: 20px;
+                        height: 20px;
                     }
 
                 }
@@ -85,8 +86,9 @@
                 @media (hover: hover) {
                     .item:hover {
                         > span {
-                            color: #666666;
-                            text-decoration: underline;
+                            color: $primary-color;
+                            transform: translateX(6px);
+                            transition-duration: 0.3s;
                         }
                     }
                 }

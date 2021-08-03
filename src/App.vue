@@ -13,18 +13,19 @@
             test 6
         </div>
     </div>
+    <Footer/>
 </template>
 
 <script lang="ts">
     import {defineComponent} from 'vue';
-    // import HelloWorld from './components/HelloWorld.vue';
-    import Header from './components/Header/Header.vue';
+    import Header from '@/components/Header/Header.vue';
+    import Footer from '@/components/Footer/Footer.vue';
 
     const App = defineComponent({
         name: 'App',
         components: {
-            // HelloWorld,
             Header,
+            Footer
         }
     });
 
