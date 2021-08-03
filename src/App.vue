@@ -18,7 +18,7 @@
 <script lang="ts">
     import {defineComponent} from 'vue';
     // import HelloWorld from './components/HelloWorld.vue';
-    import Header from './components/Header/Header.vue';
+    import Header from '@/components/Header/Header.vue';
 
     const App = defineComponent({
         name: 'App',

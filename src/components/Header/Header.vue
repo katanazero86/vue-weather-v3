@@ -14,7 +14,7 @@
 
 <script>
     import {defineComponent, ref} from 'vue';
-    import Drawer from '../Drawer/Drawer.vue';
+    import Drawer from '@/components/Drawer/Drawer.vue';
 
     const Header = defineComponent({
         name: 'Header',
