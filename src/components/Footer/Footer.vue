@@ -5,18 +5,30 @@
       <p>Powered by katanazero86</p>
     </section>
     <section class="footer__link col-6 col-sm-12 my-5">
-      <span>GitHub</span>
+      <span @click="handleLinkClick(link.url)" v-for="link in links" :key="link">{{link.name}}</span>
     </section>
   </footer>
 </template>
 
 <script lang="ts">
-    import {defineComponent} from 'vue';
+   import {defineComponent} from 'vue';
 
    const Footer = defineComponent({
         name: 'Footer',
         setup() {
+            const links = [
+                {name: 'GitHub', url : 'https://github.com/katanazero86/vue-weather-v3'}
+            ];
 
+            const handleLinkClick = targetUrl => {
+                if(!targetUrl) return false;
+                window.open(targetUrl, '_blank');
+            };
+
+            return {
+                links,
+                handleLinkClick
+            }
         }
     });
 
