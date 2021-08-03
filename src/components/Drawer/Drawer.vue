@@ -1,7 +1,7 @@
 <template>
     <div class="drawer">
         <div class="drawer__overlay row justify-contents-end" @click.self="handleOverlayClick">
-            <ul class="drawer__nav px-2">
+            <ul class="drawer__nav px-3">
                 <li class="item row align-items-center justify-contents-between py-6 px-3" @click="handleNavItemClick(navItem.path)" v-for="navItem in navItems" :key="navItem">
                     <span>{{navItem.name}}</span>
                     <img src="../../assets/icons/arrow_right_icon.png" alt="arrow-right-icon"/>

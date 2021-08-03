@@ -17,7 +17,7 @@
 <style lang="scss" scoped>
 
     .index {
-
+        height: 100%;
     }
 
 </style>

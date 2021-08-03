@@ -1,5 +1,5 @@
 <template>
-    <header class="header row align-items-center justify-contents-between pa-4">
+    <header class="header row align-items-center justify-contents-between pa-5">
         <div class="header__title">
             <p>vue-weather-v3</p>
         </div>
@@ -44,8 +44,6 @@
     position: relative;
     background-color: $background-color;
     color: $white-color;
-    height: 50px;
-
 
     &__title {
         > p {
