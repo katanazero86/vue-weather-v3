@@ -19,8 +19,7 @@
     export default MyLocationIcon
 </script>
 
+<style lang="scss" src="./Icon.scss"/>
 <style lang="scss" scoped>
-  .icon {
-    cursor: pointer;
-  }
+
 </style>

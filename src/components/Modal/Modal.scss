@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+@import "../../assets/scss/common/mixins";
+@import "../../assets/scss/common/variables";
+
+.modal {
+
+  &__overlay {
+    @include overlay-background();
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .modal-body {
+
+      background-color: $white-color;
+      border-radius: 4px;
+      width: 350px;
+      max-width: 450px;
+
+      &__header {
+        > h2 {
+          font-size: 20px;
+        }
+      }
+
+      &__content {
+        max-height: 450px;
+        overflow: auto;
+        padding: 14px 0;
+        > p {
+          letter-spacing: -0.3px;
+          font-size: 16px;
+          text-align: center;
+        }
+      }
+
+      &__button {
+
+      }
+
+    }
+
+  }
+
+}
