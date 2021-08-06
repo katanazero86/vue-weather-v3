@@ -17,6 +17,7 @@
     import BasicButton from '@/components/Buttons/BasicButton.vue';
     import AlertModal from '@/components/Modal/AlertModal.vue';
     import useAlertModal, {UseAlertModalInterface} from '@/customHooks/useAlertModal';
+    import {checkGeolocationSupport, getCurrentPosition, handleGeolocationError} from '@/utils/geolocationUtils';
 
     const Index:DefineComponent = defineComponent({
         name: 'Index',
@@ -40,16 +41,13 @@
             }:UseAlertModalInterface = useAlertModal();
 
             const onClick = () => {
-                if ('geolocation' in navigator) {
-                    setAlertModalTitle('알림');
-                    setAlertModalContent('준비중..');
-                    openIsOpen();
-                } else {
-                    alert('해당 기능은 사용이 불가능합니다. 관리자에게 문의해주세요.');
-                    console.error('not supported geolocation');
-                    return false;
+                if(checkGeolocationSupport()) {
+                    getCurrentPosition().then(position => {
+                        console.log(position);
+                    }).catch(error => {
+                       console.log(error);
+                    });
                 }
-
             }
 
             return {
