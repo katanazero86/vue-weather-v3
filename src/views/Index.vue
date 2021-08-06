@@ -11,14 +11,14 @@
 </template>
 
 <script lang="ts">
-    import {defineComponent} from 'vue';
+    import {defineComponent, DefineComponent} from 'vue';
     import DefaultLayout from '@/components/Layout/DefaultLayout.vue';
     import MyLocationIcon from '@/components/Icons/MyLocationIcon.vue';
     import BasicButton from '@/components/Buttons/BasicButton.vue';
     import AlertModal from '@/components/Modal/AlertModal.vue';
-    import useAlertModal from '@/customHooks/useAlertModal.ts';
+    import useAlertModal, {UseAlertModalInterface} from '@/customHooks/useAlertModal';
 
-    const Index = defineComponent({
+    const Index:DefineComponent = defineComponent({
         name: 'Index',
         components: {
             DefaultLayout,
@@ -26,7 +26,7 @@
             BasicButton,
             AlertModal
         },
-        setup(): Object {
+        setup() {
 
             const {
                 isOpen,
@@ -37,7 +37,7 @@
                 alertModalContent,
                 setAlertModalContent,
                 initTitleAndContent,
-            } = useAlertModal();
+            }:UseAlertModalInterface = useAlertModal();
 
             const onClick = () => {
                 if ('geolocation' in navigator) {
@@ -64,7 +64,7 @@
                 initTitleAndContent,
             }
         }
-    })
+    });
     export default Index
 </script>
 

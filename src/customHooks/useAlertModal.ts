@@ -1,8 +1,20 @@
 import {ref} from 'vue';
+import {Ref} from 'vue';
 
-export default function useAlertModal(): object {
+export interface UseAlertModalInterface {
+    isOpen: Ref<boolean>,
+    openIsOpen(): void,
+    closeIsOpen(): void,
+    alertModalTitle: Ref<string>,
+    setAlertModalTitle(targetTitle: string): void,
+    alertModalContent: Ref<string>,
+    setAlertModalContent(targetContent: string): void,
+    initTitleAndContent(): void,
+}
 
-    const isOpen = ref(false);
+export default function useAlertModal(): UseAlertModalInterface {
+
+    const isOpen = ref<boolean>(false);
     const openIsOpen = (): void => {
         isOpen.value = true;
     };
@@ -11,12 +23,12 @@ export default function useAlertModal(): object {
         initTitleAndContent();
     };
 
-    const alertModalTitle = ref('알림'); // title
+    const alertModalTitle = ref<string>('알림'); // title
     const setAlertModalTitle = (targetTitle: string): void => {
         alertModalContent.value = targetTitle.trim() ? targetTitle.trim() : '';
     }
 
-    const alertModalContent = ref(''); // content
+    const alertModalContent = ref<string>(''); // content
     const setAlertModalContent = (targetContent: string): void => {
         alertModalContent.value = targetContent.trim() ? targetContent.trim() : '';
     }
