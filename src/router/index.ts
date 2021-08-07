@@ -1,22 +1,8 @@
 import {createWebHistory, createRouter} from 'vue-router';
-import {RouteRecordRaw} from 'vue-router';
-
-const routes: Array<RouteRecordRaw> = [
-    {
-        path: '/',
-        name: 'App',
-        component: () => import('../App.vue'),
-        children: [
-            {
-                path: '',
-                name: 'Index',
-                component: () => import('../views/Index.vue'),
-            },
-        ]
-    },
-];
+import routes from './routes';
 
 const router = createRouter({
+    scrollBehavior: () => ({ left: 0, top: 0 }),
     history: createWebHistory(),
     routes,
 });

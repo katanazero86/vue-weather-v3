@@ -1,6 +1,6 @@
 <template>
   <Header v-once/>
-  <slot/>
+  <router-view/>
   <Footer v-once/>
 </template>
 
@@ -14,7 +14,7 @@
         components: {
             Header,
             Footer,
-        }
+        },
     });
     export default DefaultLayout
 </script>

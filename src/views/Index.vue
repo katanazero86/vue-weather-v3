@@ -1,28 +1,23 @@
 <template>
-  <DefaultLayout>
-    <div class="index">
+    <div class="index pa-5">
       <MyLocationIcon @click="onClick"/>
       <BasicButton name="테스트" @click="openIsOpen"/>
       {{isOpen}}
     </div>
     <AlertModal v-if="isOpen" :title="alertModalTitle" :content="alertModalContent" @close="closeIsOpen"/>
-  </DefaultLayout>
-
 </template>
 
 <script lang="ts">
-    import {defineComponent, DefineComponent} from 'vue';
-    import DefaultLayout from '@/components/Layout/DefaultLayout.vue';
+    import {defineComponent} from 'vue';
     import MyLocationIcon from '@/components/Icons/MyLocationIcon.vue';
     import BasicButton from '@/components/Buttons/BasicButton.vue';
     import AlertModal from '@/components/Modal/AlertModal.vue';
     import useAlertModal, {UseAlertModalInterface} from '@/customHooks/useAlertModal';
     import {checkGeolocationSupport, getCurrentPosition, handleGeolocationError} from '@/utils/geolocationUtils';
 
-    const Index:DefineComponent = defineComponent({
+    const Index = defineComponent({
         name: 'Index',
         components: {
-            DefaultLayout,
             MyLocationIcon,
             BasicButton,
             AlertModal
