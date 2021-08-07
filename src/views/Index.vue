@@ -1,28 +1,30 @@
 <template>
-    <div class="index pa-5">
-      <MyLocationIcon @click="onClick"/>
-      <BasicButton name="테스트" @click="openIsOpen"/>
-      {{isOpen}}
-    </div>
-    <AlertModal v-if="isOpen" :title="alertModalTitle" :content="alertModalContent" @close="closeIsOpen"/>
+  <div class="index">
+    <MyLocationSection class="py-3" @handleError="handleError"/>
+    <Dropdown class="index__dropdown py-3" :items="cityList" label="원하시는 도시를 선택해주세요 :)" :selectedItem="selectedItem"
+              @select="handleDropdownSelect"/>
+  </div>
+  <AlertModal v-if="isOpen" :title="alertModalTitle" :content="alertModalContent" @close="closeIsOpen"/>
 </template>
 
 <script lang="ts">
-    import {defineComponent} from 'vue';
-    import MyLocationIcon from '@/components/Icons/MyLocationIcon.vue';
-    import BasicButton from '@/components/Buttons/BasicButton.vue';
+    import {defineComponent, reactive} from 'vue';
+    import MyLocationSection from '@/components/Index/MyLocationSection.vue';
+    import Dropdown from '@/components/Dropdown/Dropdown.vue';
     import AlertModal from '@/components/Modal/AlertModal.vue';
     import useAlertModal, {UseAlertModalInterface} from '@/customHooks/useAlertModal';
-    import {checkGeolocationSupport, getCurrentPosition, handleGeolocationError} from '@/utils/geolocationUtils';
+    import cityList from '@/assets/js/city.list.kr';
 
     const Index = defineComponent({
         name: 'Index',
         components: {
-            MyLocationIcon,
-            BasicButton,
+            MyLocationSection,
+            Dropdown,
             AlertModal
         },
         setup() {
+
+            const selectedItem = reactive({});
 
             const {
                 isOpen,
@@ -33,20 +35,20 @@
                 alertModalContent,
                 setAlertModalContent,
                 initTitleAndContent,
-            }:UseAlertModalInterface = useAlertModal();
+            }: UseAlertModalInterface = useAlertModal();
 
-            const onClick = () => {
-                if(checkGeolocationSupport()) {
-                    getCurrentPosition().then(position => {
-                        console.log(position);
-                    }).catch(error => {
-                       console.log(error);
-                    });
-                }
+            const handleError = ({title, content}) => {
+                alertModalTitle.value = title;
+                alertModalContent.value = content;
+                openIsOpen();
+            };
+
+            const handleDropdownSelect = targetItem => {
+                Object.assign(selectedItem, targetItem);
             }
 
             return {
-                onClick,
+                handleError,
                 isOpen,
                 openIsOpen,
                 closeIsOpen,
@@ -55,6 +57,10 @@
                 alertModalContent,
                 setAlertModalContent,
                 initTitleAndContent,
+                cityList,
+                selectedItem,
+                handleDropdownSelect,
+
             }
         }
     });
@@ -68,6 +74,11 @@
   .index {
     height: 100%;
     background-color: $dark-color;
+    padding: 24px 10px;
+
+    &__dropdown {
+
+    }
   }
 
 </style>

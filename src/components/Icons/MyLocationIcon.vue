@@ -1,5 +1,5 @@
 <template>
-  <div class="icon pa-3" @click="$emit('click')">
+  <div class="icon" @click="$emit('click')">
     <img src="../../assets/icons/my_location_icon.png" alt="my-location" :width="width" :height="height"/>
   </div>
 </template>
