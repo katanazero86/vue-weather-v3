@@ -17,8 +17,9 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
     import {defineComponent, ref, onMounted, onBeforeUnmount} from 'vue';
+    import {Ref} from 'vue';
     import DropdownArrowUp from '@/components/Icons/DropdownArrowUp.vue';
     import DropdownArrowDown from '@/components/Icons/DropdownArrowDown.vue';
 
@@ -35,20 +36,20 @@
         },
         emits: ['select'],
         setup({label, items, selectedItem}, {emit}) {
-            const dropdown = ref(null);
-            const isOpenDropdown = ref(false);
+            const dropdown:Ref<HTMLElement> = ref(null);
+            const isOpenDropdown:Ref<boolean> = ref(false);
             const toggleDropdown = () => {
                 isOpenDropdown.value = !isOpenDropdown.value;
             };
 
-            const closeDropdown = (e) => {
+            const closeDropdown = (e:Event) => {
                 const dropdownEl = dropdown.value;
                 if (dropdownEl) {
-                    if (!dropdownEl.contains(e.target)) isOpenDropdown.value = false;
+                    if (!dropdownEl.contains(e.target as HTMLElement)) isOpenDropdown.value = false;
                 }
             }
 
-            const selectItem = targetItem => {
+            const selectItem = (targetItem: object) => {
                 emit('select', {...targetItem});
                 isOpenDropdown.value = false;
             };
@@ -68,12 +69,12 @@
                 selectItem,
             }
         },
-    })
+    });
+
     export default Dropdown
 </script>
 
 <style lang="scss" scoped>
-
   @import "../../assets/scss/common/variables";
 
   .dropdown {

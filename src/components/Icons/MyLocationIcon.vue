@@ -14,7 +14,7 @@
             height: {type: Number, default: 20,},
         },
         emits: ['click'],
-    })
+    });
 
     export default MyLocationIcon
 </script>

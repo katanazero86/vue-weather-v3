@@ -20,7 +20,7 @@
                 {name: 'GitHub', url: 'https://github.com/katanazero86/vue-weather-v3'}
             ];
 
-            const handleLinkClick = targetUrl => {
+            const handleLinkClick = (targetUrl:string) => {
                 if (!targetUrl) return false;
                 window.open(targetUrl, '_blank');
             };
@@ -36,7 +36,6 @@
 </script>
 
 <style lang="scss" scoped>
-
   @import '../../assets/scss/common/mixins';
   @import '../../assets/scss/common/variables';
 

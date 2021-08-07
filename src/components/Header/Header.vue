@@ -1,26 +1,27 @@
 <template>
-    <header class="header row align-items-center justify-contents-between pa-5">
-        <div class="header__title">
-            <p>vue-weather-v3</p>
-        </div>
-        <figure class="header__menu-icon" @click="toggleIsOpen">
-            <img src="../../assets/icons/menu_icon.png" alt="menu-icon"/>
-        </figure>
-    </header>
-    <transition name="fade">
-        <Drawer v-if="isOpen" :isOpen="isOpen" @toggleIsOpen="toggleIsOpen" />
-    </transition>
+  <header class="header row align-items-center justify-contents-between pa-5">
+    <div class="header__title">
+      <p>vue-weather-v3</p>
+    </div>
+    <figure class="header__menu-icon" @click="toggleIsOpen">
+      <img src="../../assets/icons/menu_icon.png" alt="menu-icon"/>
+    </figure>
+  </header>
+  <transition name="fade">
+    <Drawer v-if="isOpen" :isOpen="isOpen" @toggleIsOpen="toggleIsOpen"/>
+  </transition>
 </template>
 
-<script>
+<script lang="ts">
     import {defineComponent, ref} from 'vue';
+    import {Ref} from 'vue';
     import Drawer from '@/components/Drawer/Drawer.vue';
 
     const Header = defineComponent({
         name: 'Header',
         components: {Drawer},
         setup() {
-            const isOpen = ref(false);
+            const isOpen: Ref<boolean> = ref(false);
             const toggleIsOpen = () => {
                 isOpen.value = !isOpen.value;
             }
@@ -30,15 +31,16 @@
                 toggleIsOpen,
             }
         }
-    })
+    });
+
     export default Header
 </script>
 
 <style lang="scss" scoped>
-    @import '../../assets/scss/common/mixins';
-    @import '../../assets/scss/common/variables';
+  @import '../../assets/scss/common/mixins';
+  @import '../../assets/scss/common/variables';
 
-.header {
+  .header {
 
     @include box-shadow-3();
     position: relative;
@@ -46,26 +48,26 @@
     color: $white-color;
 
     &__title {
-        > p {
-            font-size: 18px;
-            letter-spacing: -0.5px;
-            font-weight: 500;
-        }
+      > p {
+        font-size: 18px;
+        letter-spacing: -0.5px;
+        font-weight: 500;
+      }
     }
 
     &__menu-icon {
-        margin: 0;
-        padding: 0;
+      margin: 0;
+      padding: 0;
 
-        width: 28px;
-        height: 28px;
+      width: 28px;
+      height: 28px;
 
-        > img {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
-            cursor: pointer;
-        }
+      > img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        cursor: pointer;
+      }
     }
-}
+  }
 </style>

@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
     import {defineComponent} from 'vue';
 
     const DropdownArrowUp = defineComponent({
@@ -18,7 +18,8 @@
             color: {type: String, default: '#000000'},
         },
         emits: ['click'],
-    })
+    });
+
     export default DropdownArrowUp
 </script>
 

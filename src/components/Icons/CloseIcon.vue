@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 
     import {defineComponent} from 'vue';
 
@@ -23,6 +23,7 @@
         },
         emits: ['click'],
     });
+
     export default CloseIcon
 </script>
 

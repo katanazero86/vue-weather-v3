@@ -19,7 +19,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
     import {defineComponent} from 'vue';
     import CloseIcon from '@/components/Icons/CloseIcon.vue';
     import BasicButton from '@/components/Buttons/BasicButton.vue';
@@ -36,6 +36,7 @@
         },
         emits: ['close'],
     });
+    
     export default AlertModal
 </script>
 

@@ -24,7 +24,7 @@
         },
         setup() {
 
-            const selectedItem = reactive({});
+            const selectedItem = reactive<object>({});
 
             const {
                 isOpen,
@@ -64,6 +64,7 @@
             }
         }
     });
+
     export default Index
 </script>
 
