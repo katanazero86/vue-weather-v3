@@ -41,7 +41,6 @@
             };
 
             const closeDropdown = (e) => {
-                console.log('시발?');
                 const dropdownEl = dropdown.value;
                 if (dropdownEl) {
                     if (!dropdownEl.contains(e.target)) isOpenDropdown.value = false;
@@ -50,6 +49,7 @@
 
             const selectItem = targetItem => {
                 emit('select', {...targetItem});
+                isOpenDropdown.value = false;
             };
 
             onMounted(() => {
