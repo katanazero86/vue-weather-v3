@@ -25,7 +25,8 @@
     const Dropdown = defineComponent({
         name: 'Dropdown',
         components: {
-            DropdownArrowUp, DropdownArrowDown
+            DropdownArrowUp,
+            DropdownArrowDown,
         },
         props: {
             label: {type: String, default: 'Select item'},
