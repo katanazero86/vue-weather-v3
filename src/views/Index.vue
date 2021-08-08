@@ -8,12 +8,14 @@
 </template>
 
 <script lang="ts">
-    import {defineComponent, reactive} from 'vue';
+    import {defineComponent, reactive, onMounted} from 'vue';
     import MyLocationSection from '@/components/Index/MyLocationSection.vue';
     import Dropdown from '@/components/Dropdown/Dropdown.vue';
     import AlertModal from '@/components/Modal/AlertModal.vue';
     import useAlertModal, {UseAlertModalInterface} from '@/customHooks/useAlertModal';
     import cityList from '@/assets/js/city.list.kr';
+
+    import repositories from '@/repositories/index';
 
     const Index = defineComponent({
         name: 'Index',
@@ -46,6 +48,11 @@
             const handleDropdownSelect = targetItem => {
                 Object.assign(selectedItem, targetItem);
             }
+
+            onMounted(async () => {
+                const result = await repositories.weatherRepository.findCurrentWeather({q: '', appId: ''});
+                console.log(result)
+            })
 
             return {
                 handleError,

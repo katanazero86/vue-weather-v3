@@ -1,5 +1,6 @@
 /**
  * 위치정보 지원여부 체크
+ * @return boolean
  */
 export function checkGeolocationSupport(): boolean {
     return 'geolocation' in navigator;
@@ -9,6 +10,7 @@ export function checkGeolocationSupport(): boolean {
  * 현재 위치정보를 조회
  * 권한을 설정하지 않은 경우, 허용/차단 여부를 먼저 물어보고 이후에 로직을 실행
  * 차단시 위치정보를 조회해오지 않음
+ * @return Promise<any>
  */
 export function getCurrentPosition(): Promise<any> {
 
@@ -29,6 +31,7 @@ export function getCurrentPosition(): Promise<any> {
 /**
  * 위치정보 관련 error code 콘솔 출력 및 문자열 치환
  * @param targetError
+ * @return string
  */
 export function handleGeolocationError(targetError): string {
     console.log('Error occurred. Geolocation Error code: ' + targetError.code);

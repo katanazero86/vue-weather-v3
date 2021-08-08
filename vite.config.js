@@ -3,8 +3,12 @@ import vuePlugin from '@vitejs/plugin-vue';
 import path from 'path';
 import fs from 'fs'
 
+
+console.log(process.env.VITE_SOME_KEY);
+
 export default defineConfig({
     mode: 'development',
+    envDir: 'root',
     resolve: {
         alias: {
             '@': path.resolve(__dirname, '/src'),
