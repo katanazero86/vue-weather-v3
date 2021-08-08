@@ -1,10 +1,7 @@
 import {defineConfig} from 'vite';
 import vuePlugin from '@vitejs/plugin-vue';
 import path from 'path';
-import fs from 'fs'
-
-
-console.log(process.env.VITE_SOME_KEY);
+import fs from 'fs';
 
 export default defineConfig({
     mode: 'development',
