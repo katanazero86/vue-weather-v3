@@ -1,10 +1,10 @@
 <template>
-  <div class="index">
-    <MyLocationSection class="py-3" @handleError="handleError"/>
-    <Dropdown class="index__dropdown py-3" :items="cityList" label="원하시는 도시를 선택해주세요 :)" :selectedItem="selectedItem"
-              @select="handleDropdownSelect"/>
-  </div>
-  <AlertModal v-if="isOpen" :title="alertModalTitle" :content="alertModalContent" @close="closeIsOpen"/>
+    <div class="index">
+        <MyLocationSection class="py-3" @handleError="handleError" @geolocationPosition="getGeolocationPosition"/>
+        <Dropdown class="index__dropdown py-3" :items="cityList" label="원하시는 도시를 선택해주세요 :)" :selectedItem="selectedItem"
+                  @select="handleDropdownSelect"/>
+    </div>
+    <AlertModal v-if="isOpen" :title="alertModalTitle" :content="alertModalContent" @close="closeIsOpen"/>
 </template>
 
 <script lang="ts">
@@ -14,8 +14,10 @@
     import AlertModal from '@/components/Modal/AlertModal.vue';
     import useAlertModal, {UseAlertModalInterface} from '@/customHooks/useAlertModal';
     import cityList from '@/assets/js/city.list.kr';
-
     import repositories from '@/repositories/index';
+    import {useStore} from "vuex";
+
+    const API_KEY = import.meta.env.VITE_API_KEY;
 
     const Index = defineComponent({
         name: 'Index',
@@ -26,7 +28,8 @@
         },
         setup() {
 
-            const selectedItem = reactive<object>({});
+            const store = useStore();
+            const selectedItem = reactive<any>({});
 
             const {
                 isOpen,
@@ -44,18 +47,47 @@
                 alertModalContent.value = content;
                 openIsOpen();
             };
+            const getGeolocationPosition = targetGeolocationPosition => {
+                console.log(targetGeolocationPosition);
+                const lat = targetGeolocationPosition?.coords?.latitude;
+                const lon = targetGeolocationPosition?.coords?.longitude;
+                findCurrentWeatherByGeographicCoordinates(lat, lon);
+            }
+
+            const findCurrentWeatherByGeographicCoordinates = async (lat, lon) => {
+                const result = await repositories.weatherRepository.findCurrentWeatherByGeographicCoordinates({
+                    lat,
+                    lon,
+                    appId: API_KEY
+                })
+                    .catch(error => {
+                        console.log(error.response.status, error.response.data?.message);
+                    });
+
+                if (result.status === 200) {
+                    console.log(result);
+                }
+            };
+
+            const findCurrentWeatherByCity = async (q) => {
+                const result = await repositories.weatherRepository.findCurrentWeatherByCity({q, appId: API_KEY})
+                    .catch(error => {
+                        console.log(error.response.status, error.response.data?.message);
+                    });
+                if (result.status === 200) {
+                    console.log(result);
+                }
+            }
 
             const handleDropdownSelect = targetItem => {
                 Object.assign(selectedItem, targetItem);
-            }
-
-            onMounted(async () => {
-                const result = await repositories.weatherRepository.findCurrentWeather({q: '', appId: ''});
-                console.log(result)
-            })
+                const q = `${selectedItem.name}, ${selectedItem.country}`
+                findCurrentWeatherByCity(q);
+            };
 
             return {
                 handleError,
+                getGeolocationPosition,
                 isOpen,
                 openIsOpen,
                 closeIsOpen,
@@ -67,7 +99,6 @@
                 cityList,
                 selectedItem,
                 handleDropdownSelect,
-
             }
         }
     });
@@ -77,16 +108,16 @@
 
 <style lang="scss" scoped>
 
-  @import '../assets/scss/common/variables';
+    @import '../assets/scss/common/variables';
 
-  .index {
-    height: 100%;
-    background-color: $dark-color;
-    padding: 24px 10px;
+    .index {
+        height: 100%;
+        background-color: $dark-color;
+        padding: 24px 10px;
 
-    &__dropdown {
+        &__dropdown {
 
+        }
     }
-  }
 
 </style>

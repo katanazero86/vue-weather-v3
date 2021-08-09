@@ -1,12 +1,11 @@
-interface CurrentWeatherParamInterface {
-    q: string,
-    appId: string,
-}
-
 export default (api, axios) => {
     return {
-        async findCurrentWeather({q, appId}: CurrentWeatherParamInterface) {
-            return api.get(`/weather?${q}&${appId}`)
+        async findCurrentWeatherByCity({q, appId}) {
+            return api.get(`/weather?q=${q}&appid=${appId}`)
+        },
+
+        async findCurrentWeatherByGeographicCoordinates({lat, lon, appId}) {
+            return api.get(`/weather?lat=${lat}&lon=${lon}&appid=${appId}`)
         }
     }
 }

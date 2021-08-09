@@ -1,10 +1,10 @@
 <template>
-  <section class="my-location">
-    <div class="my-location__body column align-items-center">
-      <MyLocationIcon @click="handleMyLocationIconClick" :width="25" :height="25"/>
-      <p class="pt-2">click here :) get current position weather!</p>
-    </div>
-  </section>
+    <section class="my-location">
+        <div class="my-location__body column align-items-center">
+            <MyLocationIcon @click="handleMyLocationIconClick" :width="25" :height="25"/>
+            <p class="pt-2">click here :) get current position weather!</p>
+        </div>
+    </section>
 </template>
 
 <script>
@@ -17,12 +17,12 @@
         components: {
             MyLocationIcon,
         },
-        emits: ['handleError'],
+        emits: ['handleError', 'geolocationPosition'],
         setup(props, {emit}) {
             const handleMyLocationIconClick = () => {
                 if (checkGeolocationSupport()) {
                     getCurrentPosition().then(position => {
-                        console.log(position);
+                        emit('geolocationPosition', position);
                     }).catch(error => {
                         emit('handleError', {title: '알림', content: handleGeolocationError(error)})
                         alertModalTitle.value = '알림';
@@ -41,19 +41,19 @@
 </script>
 
 <style lang="scss" scoped>
-  @import "../../assets/scss/common/variables";
+    @import "../../assets/scss/common/variables";
 
-  .my-location {
+    .my-location {
 
-    width: 100%;
-    max-width: 1024px;
-    margin: 0 auto;
+        width: 100%;
+        max-width: 1024px;
+        margin: 0 auto;
 
-    &__body {
-      letter-spacing: -0.3px;
-      color: $white-color;
-      font-weight: 400;
-      font-size: 14px;
+        &__body {
+            letter-spacing: -0.3px;
+            color: $white-color;
+            font-weight: 400;
+            font-size: 14px;
+        }
     }
-  }
 </style>

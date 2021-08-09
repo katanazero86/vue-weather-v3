@@ -20,7 +20,7 @@ npm i -D sass
 npm i -D typescript
 ```
 
-- vue-router 적용(모듈 설치 후, /src/router/index.ts 생성 및 작성)
+- vue-router 적용(모듈 설치 후, /src/router/index.js 생성 및 작성)
 - main.js 에 router 추가
 ```
 npm i -S vue-router@next

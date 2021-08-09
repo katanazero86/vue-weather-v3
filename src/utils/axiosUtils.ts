@@ -16,7 +16,7 @@ api.interceptors.response.use((response: AxiosResponse) => {
 }, (error) => {
     console.log('response error');
     console.log(error);
-    return error;
+    return Promise.reject(error);
 });
 
 export {api, axios}
