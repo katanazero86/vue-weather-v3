@@ -9,6 +9,7 @@ api.interceptors.request.use((config: AxiosRequestConfig) => {
 }, (error) => {
     console.log('request error');
     console.log(error);
+    return Promise.reject(error);
 });
 
 api.interceptors.response.use((response: AxiosResponse) => {

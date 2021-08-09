@@ -1,8 +1,4 @@
-const mutationTypes = {
-    CURRENT_WEATHER: 'currentWeather',
-    FORECAST_5_DAY: 'forecast5Day',
-    INIT_STATES: 'initStates',
-};
+import {mutationTypes} from './weatherModuleTypes';
 
 export const weatherModule = {
     namespaced: true,

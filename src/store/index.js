@@ -1,4 +1,5 @@
 import {createStore} from 'vuex';
+import {mutationTypes} from './rootTypes';
 import modules from './modules/index';
 
 const store = createStore({
@@ -10,10 +11,10 @@ const store = createStore({
     },
     actions: {
         onIsLoadingAction({commit}) {
-            commit('onIsLoading');
+            commit(mutationTypes.ON_IS_LOADING);
         },
         offIsLoadingAction({commit}) {
-            commit('offIsLoading')
+            commit(mutationTypes.OFF_IS_LOADING);
         },
     },
     mutations: {

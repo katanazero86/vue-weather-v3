@@ -77,19 +77,26 @@
 <style lang="scss" scoped>
   @import "../../assets/scss/common/variables";
 
+  $selectHeight : 40px;
+
   .dropdown {
 
     width: 100%;
     max-width: 1024px;
     margin: 0 auto;
+    position: relative;
 
     &__select {
       cursor: pointer;
       background-color: $white-color;
       font-size: 16px;
+      height: $selectHeight;
     }
 
     &__body {
+      position: absolute;
+      left: 0;
+      right: 0;
       ul {
         max-height: 500px;
         overflow: auto;
