@@ -62,6 +62,9 @@
   @import '../../assets/scss/common/variables';
 
   .drawer {
+    position: relative;
+    z-index: 9999;
+
     &__overlay {
       @include overlay-background();
       position: fixed;
