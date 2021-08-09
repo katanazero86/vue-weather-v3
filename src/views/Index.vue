@@ -54,6 +54,20 @@
                 findCurrentWeatherByGeographicCoordinates(lat, lon);
             }
 
+            // api 관련하여 추상화 예정
+            const findCurrentWeatherByGeographicCoordinates1 = (lat, lon) => {
+                return async (lat, lon) => {
+                    const result = await repositories.weatherRepository.findCurrentWeatherByGeographicCoordinates({
+                        lat,
+                        lon,
+                        appId: API_KEY
+                    })
+                        .catch(error => {
+                            console.log(error.response.status, error.response.data?.message);
+                        });
+                }
+            }
+
             const findCurrentWeatherByGeographicCoordinates = async (lat, lon) => {
                 const result = await repositories.weatherRepository.findCurrentWeatherByGeographicCoordinates({
                     lat,
