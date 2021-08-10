@@ -64,6 +64,7 @@
             }
         }
     });
+
     export default CurrentWeatherSection
 </script>
 
@@ -96,7 +97,7 @@
     &__body {
 
       width: 100%;
-      max-width: 550px;
+      max-width: 600px;
       margin: 0 auto;
       background-color: rgba(179,209,255,.45);
       border-radius: 8px;

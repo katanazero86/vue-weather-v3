@@ -75,23 +75,30 @@
 }
 
 // render-cols(12column grid)
-
-@include responsive(desktop) {
-  @include render-col(''); // desktop
+// mobile first
+@include responsive-col('') {
+  @include render-col(''); // mobile
 }
 
-@include responsive(tablet) {
+@include responsive-col(tablet) {
   @include render-col('-sm'); // tablet
 }
 
-@include responsive(mobile) {
-  @include render-col('-xs'); // mobile
+@include responsive-col(desktop) {
+  @include render-col('-md'); // desktop
+}
+
+@include responsive-col(large) {
+  @include render-col('-lg');
 }
 
 [class*="col-"] {
   width: 100%;
 }
 
+[class*="col-"]:not(:first-child):not(:last-child) {
+  width: 100%;
+}
 
 
 .pa-1 {

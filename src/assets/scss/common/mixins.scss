@@ -3,16 +3,54 @@
 @import './functions';
 
 @mixin responsive($type) {
-  @if $type == desktop {
-    @media screen and (min-width: $md) {
+
+  @if $type == mobile {
+    // extra small less than 640px
+    @media screen and (min-width: 370px) and (max-width: $xs - 1px) {
       @content
     }
   } @else if $type == tablet {
-    @media screen and (max-width: $sm) {
+    // small device or tablet 640px up
+    @media screen and (min-width: $xs) and (max-width: $md - 1px) {
+      @content
+    }
+  } @else if $type == desktop {
+    // desktop 960px up
+    @media screen and (min-width: $md) and (max-width: $lg - 1px) {
       @content
     }
   } @else {
-    @media screen and (max-width: $xs) {
+    // 1140px up
+    @media screen and (min-width: $lg) {
+      @content
+    }
+  }
+}
+
+@mixin responsive-col($type) {
+  // breakpoint up
+  @if $type == '' {
+    @media screen and (min-width: 350px) {
+      // 350px up
+      // default
+      @content
+    }
+  } @else if $type == tablet {
+    // 640px up
+    // sm
+    @media screen and (min-width: $xs) {
+      @content
+    }
+  } @else if $type == desktop {
+    // 960px up
+    // md
+    @media screen and (min-width: $md) {
+      @content
+    }
+  } @else if $type == large {
+    // 1140px up
+    // lg
+    @media screen and (min-width: $lg) {
       @content
     }
   }
@@ -20,23 +58,41 @@
 
 @mixin render-col($type) {
 
-  .col#{$type} {
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: 0;
+  .row, .row-wrap, .column {
+    > .col#{$type} {
+      flex-grow: 1;
+      flex-shrink: 1;
+      flex-basis: 0;
+    }
   }
+
+  //.col#{$type} {
+  //  flex-grow: 1;
+  //  flex-shrink: 1;
+  //  flex-basis: 0;
+  //}
 
   @for $i from 1 through $grid-cols-num {
     // col-xs-1
     // col-sm-1
-    // desktop : col-1
+    // col-md-1
+    // col-1
 
-    .col#{$type}-#{$i} {
-      flex-grow: 0;
-      flex-shrink: 0;
-      flex-basis: get-size($i);
-      max-width: get-size($i);
+    .row, .row-wrap, .column {
+      > .col#{$type}-#{$i} {
+        flex-grow: 0;
+        flex-shrink: 0;
+        flex-basis: get-size($i);
+        max-width: get-size($i);
+      }
     }
+
+    //.col#{$type}-#{$i} {
+    //  flex-grow: 0;
+    //  flex-shrink: 0;
+    //  flex-basis: get-size($i);
+    //  max-width: get-size($i);
+    //}
   }
 }
 

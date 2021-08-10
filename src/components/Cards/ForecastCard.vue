@@ -1,27 +1,27 @@
 <template>
-  <div class="col-6 col-xs-12 forecast-card">
+  <div class="forecast-card">
+    <div class="forecast-card__header">
+      {{ items[0].dt }}
+    </div>
     <div class="forecast-card__body">
-      <div class="forecast-card-header">
-        {{ props.forecastList[0].dt }}
-      </div>
       <table>
         <tbody>
-        <tr v-for="forecast in forecastList" :key="forecast">
+        <tr v-for="item in items" :key="item">
           <td>
-            <div class="flex-layout-nowrap align-item-center">
+            <div class="row align-items-center">
               <div class="col-6">
-                <span>{{ forecast.dt_txt }}</span><br/>
-                <span> {{forecast.weather[0].description}}</span>
+                <span>{{ item.dt_txt }}</span><br/>
+                <span> {{ item.weather[0].description }}</span>
               </div>
-              <div class="flex-layout-nowrap align-item-center col-6">
-                <img :src="`${props.openWeatherIconBaseUrlState}/${forecast.weather[0].icon}@2x.png`" width="50"
+              <div class="row align-items-center col-6">
+                <img :src="`${OPEN_WEATHER_ICONS_BASE_URL}/${item.weather[0].icon}@2x.png`" width="50"
                      height="50"/>
-                <span>{{(forecast.main.temp - 273.15).toFixed(1) }} °C</span>
+                <span>{{ Math.round((item.main.temp - 273.15).toFixed(1)) }} °C</span>
               </div>
             </div>
           </td>
           <td>
-            <p style="text-align: center">풍속 : {{forecast.wind.speed}} m/s </p>
+            <p style="text-align: center">풍속 : {{ item.wind.speed }} m/s </p>
           </td>
         </tr>
         </tbody>
@@ -33,9 +33,18 @@
 <script lang="ts">
     import {defineComponent} from 'vue';
 
+    const OPEN_WEATHER_ICONS_BASE_URL = import.meta.env.VITE_OPEN_WEATHER_ICONS_BASE_URL;
+
     const ForecastCard = defineComponent({
         name: 'ForecastCard',
-        forecastList: {type: Array, default: [],},
+        props: {
+            items: {type: Array, default: [],}
+        },
+        setup() {
+            return {
+                OPEN_WEATHER_ICONS_BASE_URL
+            }
+        }
     });
 
     export default ForecastCard
@@ -46,21 +55,19 @@
   .forecast-card {
     padding: 8px 0;
     width: 100%;
-    max-width: 485px;
-    @media all and (max-width: 1024px) {
-      max-width: none;
+
+    &__header {
+      background-color: rgba(179, 209, 255, 0.45);
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 4px;
+      color: white;
     }
 
+
     &__body {
-      .forecast-card-header {
-        background-color: rgba(179, 209, 255, 0.45);
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
-        font-size: 13px;
-        font-weight: 600;
-        padding: 4px;
-        color: white;
-      }
 
       .forecast-temp-badge {
         background-color: #4e4d4a;

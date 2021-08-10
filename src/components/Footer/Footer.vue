@@ -1,10 +1,10 @@
 <template>
   <footer class="footer row-wrap align-items-center justify-contents-between pa-5">
-    <section class="footer__description col-6 col-sm-12 my-5">
+    <section class="footer__description col-12 col-md-6 my-5">
       <p>© 2021 vue-weather-v3 ® All rights reserved.</p>
       <p>Powered by katanazero86</p>
     </section>
-    <section class="footer__link col-6 col-sm-12 my-5">
+    <section class="footer__link col-12 col-md-6 my-5">
       <span @click="handleLinkClick(link.url)" v-for="link in links" :key="link">{{link.name}}</span>
     </section>
   </footer>
