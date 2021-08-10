@@ -1,7 +1,7 @@
 <template>
   <div class="forecast-card">
     <div class="forecast-card__header">
-      {{ items[0].dt }}
+      {{ items[0].dt_txt.split(' ')[0] }}
     </div>
     <div class="forecast-card__body">
       <table>

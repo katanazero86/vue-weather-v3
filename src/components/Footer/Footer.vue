@@ -20,7 +20,7 @@
                 {name: 'GitHub', url: 'https://github.com/katanazero86/vue-weather-v3'}
             ];
 
-            const handleLinkClick = (targetUrl:string) => {
+            const handleLinkClick = (targetUrl: string) => {
                 if (!targetUrl) return false;
                 window.open(targetUrl, '_blank');
             };

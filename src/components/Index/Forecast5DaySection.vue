@@ -5,9 +5,9 @@
         Hourly weather and <br/>forecasts in {{ forecast5Day.city.name }}, {{forecast5Day.city.country}}
       </h2>
     </div>
-    <div class="row-wrap align-item-start justify-content-between">
+    <div class="forecast__cards row-wrap align-item-start justify-content-between">
       <template v-for='items in customForecastList' :key="items">
-<!--        <ForecastCard :items="items" class="col-4 col-xs-6"/>-->
+        <ForecastCard :items="items" class="col-12 col-sm-6"/>
       </template>
     </div>
   </section>
@@ -24,8 +24,6 @@
             forecast5Day: {type: Object, default: {}},
         },
         setup({forecast5Day}) {
-            console.log(forecast5Day);
-
             const customForecastList = computed(() => {
                 if (forecast5Day !== null && forecast5Day !== {}) {
                     const resultForecastList = [];
@@ -36,7 +34,6 @@
                         const resultForecastFilter = targetForecast.list.filter(forecast => forecast.dt_txt.split(' ')[0] === dtTxt);
                         resultForecastList.push(resultForecastFilter);
                     });
-                    console.log(resultForecastList);
                     return resultForecastList;
                 }
                 return [];
@@ -53,6 +50,7 @@
 
 <style lang="scss" scoped>
   @import '../../assets/scss/common/variables';
+  @import '../../assets/scss/common/mixins';
 
   .forecast {
 
@@ -65,6 +63,28 @@
       > h2 {
         color: $white-color;
       }
+    }
+
+    &__cards {
+
+      .col-sm-6:nth-child(odd) {
+        padding-right: 4px;
+      }
+
+      .col-sm-6:nth-child(even) {
+        padding-left: 4px;
+      }
+
+      @include responsive(mobile) {
+        .col-sm-6:nth-child(odd) {
+          padding-right: 0;
+        }
+
+        .col-sm-6:nth-child(even) {
+          padding-left: 0;
+        }
+      }
+
     }
   }
 </style>

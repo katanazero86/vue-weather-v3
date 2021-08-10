@@ -4,7 +4,10 @@
     <Dropdown class="py-3" :items="cityList" label="원하시는 도시를 선택해주세요 :)" :selectedItem="selectedItem"
               @select="handleDropdownSelect"/>
     <CurrentWeatherSection :currentWeather="currentWeather" v-if="currentWeather"/>
-    <Forecast5DaySection :forecast5Day="forecast5Day" v-if="forecast5Day"/>
+    <template v-if="forecast5Day">
+      <Forecast5DaySection :forecast5Day="forecast5Day"/>
+      <ForecastChart :forecast5Day="forecast5Day"/>
+    </template>
   </div>
   <AlertModal v-if="isOpen" :title="alertModalTitle" :content="alertModalContent" @close="closeIsOpen"/>
 </template>
@@ -17,6 +20,7 @@
     import Dropdown from '@/components/Dropdown/Dropdown.vue';
     import CurrentWeatherSection from '@/components/Index/CurrentWeatherSection.vue';
     import Forecast5DaySection from '@/components/Index/Forecast5DaySection.vue';
+    import ForecastChart from '@/components/Index/ForecastChart/ForecastChart.vue';
     import AlertModal from '@/components/Modal/AlertModal.vue';
     import useAlertModal, {UseAlertModalInterface} from '@/customHooks/useAlertModal';
     import useApiIsLoading from "@/customHooks/useApiIsLoading";
@@ -33,6 +37,7 @@
             Dropdown,
             CurrentWeatherSection,
             Forecast5DaySection,
+            ForecastChart,
             AlertModal,
         },
         setup() {
@@ -187,7 +192,7 @@
   @import '../assets/scss/common/variables';
 
   .index {
-    height: 100%;
+    min-height: 100%;
     background-color: $dark-color;
     padding: 24px 10px;
   }

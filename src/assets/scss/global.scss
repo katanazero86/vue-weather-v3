@@ -96,11 +96,6 @@
   width: 100%;
 }
 
-[class*="col-"]:not(:first-child):not(:last-child) {
-  width: 100%;
-}
-
-
 .pa-1 {
   padding: 2px;
 }
