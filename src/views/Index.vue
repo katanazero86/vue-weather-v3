@@ -4,6 +4,7 @@
     <Dropdown class="py-3" :items="cityList" label="원하시는 도시를 선택해주세요 :)" :selectedItem="selectedItem"
               @select="handleDropdownSelect"/>
     <CurrentWeatherSection :currentWeather="currentWeather" v-if="currentWeather"/>
+    <Forecast5DaySection :forecast5Day="forecast5Day" v-if="forecast5Day"/>
   </div>
   <AlertModal v-if="isOpen" :title="alertModalTitle" :content="alertModalContent" @close="closeIsOpen"/>
 </template>
@@ -15,6 +16,7 @@
     import MyLocationSection from '@/components/Index/MyLocationSection.vue';
     import Dropdown from '@/components/Dropdown/Dropdown.vue';
     import CurrentWeatherSection from '@/components/Index/CurrentWeatherSection.vue';
+    import Forecast5DaySection from '@/components/Index/Forecast5DaySection.vue';
     import AlertModal from '@/components/Modal/AlertModal.vue';
     import useAlertModal, {UseAlertModalInterface} from '@/customHooks/useAlertModal';
     import useApiIsLoading from "@/customHooks/useApiIsLoading";
@@ -30,6 +32,7 @@
             MyLocationSection,
             Dropdown,
             CurrentWeatherSection,
+            Forecast5DaySection,
             AlertModal,
         },
         setup() {
@@ -56,11 +59,33 @@
                 alertModalContent.value = content;
                 openIsOpen();
             };
+
             const getGeolocationPosition = targetGeolocationPosition => {
                 const lat = targetGeolocationPosition?.coords?.latitude;
                 const lon = targetGeolocationPosition?.coords?.longitude;
                 findCurrentWeatherByGeographicCoordinates(lat, lon);
-            }
+                findForecast5DayByGeographicCoordinates(lat, lon);
+            };
+
+            const findCurrentWeatherByCity = async q => {
+                onIsLoading();
+                const result = await repositories.weatherRepository.findCurrentWeatherByCity({
+                    q,
+                    appId: API_KEY,
+                }).catch(error => {
+                    console.log(error.response.status, error.response.data?.message);
+                    offIsLoading();
+                });
+
+                if (result.status === 200) {
+                    const responseData = {...result.data};
+                    store.dispatch(`${NAMESPACE}/${actionTypes.CURRENT_WEATHER_ACTION}`, responseData);
+                } else {
+
+                }
+
+                offIsLoading();
+            };
 
             const findCurrentWeatherByGeographicCoordinates = async (lat, lon) => {
                 onIsLoading();
@@ -84,9 +109,9 @@
                 offIsLoading();
             };
 
-            const findCurrentWeatherByCity = async (q) => {
+            const findForecast5DayByCity = async q => {
                 onIsLoading();
-                const result = await repositories.weatherRepository.findCurrentWeatherByCity({
+                const result = await repositories.weatherRepository.findForecast5DayByCity({
                     q,
                     appId: API_KEY,
                 }).catch(error => {
@@ -96,7 +121,30 @@
 
                 if (result.status === 200) {
                     const responseData = {...result.data};
-                    store.dispatch(`${NAMESPACE}/${actionTypes.CURRENT_WEATHER_ACTION}`, responseData);
+                    store.dispatch(`${NAMESPACE}/${actionTypes.FORECAST_5_DAY_ACTION}`, responseData);
+                    selectedItem.value = {};
+                } else {
+
+                }
+
+                offIsLoading();
+            };
+
+            const findForecast5DayByGeographicCoordinates = async (lat, lon) => {
+                onIsLoading();
+                const result = await repositories.weatherRepository.findForecast5DayByGeographicCoordinates({
+                    lat,
+                    lon,
+                    appId: API_KEY,
+                }).catch(error => {
+                    console.log(error.response.status, error.response.data?.message);
+                    offIsLoading();
+                });
+
+                if (result.status === 200) {
+                    const responseData = {...result.data};
+                    store.dispatch(`${NAMESPACE}/${actionTypes.FORECAST_5_DAY_ACTION}`, responseData);
+                    selectedItem.value = {};
                 } else {
 
                 }
@@ -108,6 +156,7 @@
                 selectedItem.value = targetItem;
                 const q = `${selectedItem.value.name}, ${selectedItem.value.country}`
                 findCurrentWeatherByCity(q);
+                findForecast5DayByCity(q);
             };
 
             return {
