@@ -29,7 +29,7 @@ export default (api, axios) => {
          * @param q
          * @param appId
          */
-        async find5DayForecastByCity({q, appId}) {
+        async findForecast5DayByCity({q, appId}) {
             return api.get(`/forecast?q=${q}&appid=${appId}`)
         },
 
@@ -39,7 +39,7 @@ export default (api, axios) => {
          * @param lon
          * @param appId
          */
-        async find5DayForecastByGeographicCoordinates({lat, lon, appId}) {
+        async findForecast5DayByGeographicCoordinates({lat, lon, appId}) {
             return api.get(`/forecast?lat=${lat}&lon=${lon}&appid=${appId}`)
         }
     }
