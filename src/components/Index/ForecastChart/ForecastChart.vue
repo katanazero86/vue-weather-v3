@@ -25,6 +25,7 @@
 
 <script lang="ts">
     import {defineComponent} from 'vue';
+    import {convertUnixTimeStampIntoDate} from "@/utils/dateUtils";
 
     const ForecastChart = defineComponent({
         name: 'ChartSection',
@@ -37,7 +38,7 @@
                 if (this.forecast5Day && this.forecast5Day?.list) {
                     this.forecast5Day.list.forEach(data => {
                         windDataArray.push([
-                            `${data.dt_txt}`,
+                            `${convertUnixTimeStampIntoDate(data.dt)}`,
                             `${data.wind.speed}`
                         ]);
                     });
@@ -49,21 +50,20 @@
             renderTemperatureChart() {
                 const temperatureDataArray = [];
                 if (this.forecast5Day && this.forecast5Day?.list) {
-                    this.forecast5Day.list.forEach(data => {
-                        temperatureDataArray.push([
-                            `${data.dt_txt}`,
-                            `${Math.round((data.main.temp - 273.15).toFixed(1))}`
-                        ]);
+                    this.temperatureSeries[0].data = this.forecast5Day.list.map(data => {
+                        return [
+                            `${convertUnixTimeStampIntoDate(data.dt)}`,
+                            `${(data.main.temp - 273.15).toFixed(1)}`
+                        ]
                     });
                 }
-                this.temperatureSeries[0].data = [...temperatureDataArray];
                 return this.temperatureSeries;
             },
         },
         data(): object {
             return {
                 windChartOptions: {
-                    colors:['#fa3e6d'], // 1: chart line
+                    colors: ['#fa3e6d'], // 1: chart line
                     markers: {
                         colors: ['#9C27B0'],
                     },
@@ -85,9 +85,9 @@
                         text: 'forecasts(Wind)',
                         align: 'left',
                         style: {
-                            fontSize:  '14px',
-                            fontWeight:  600,
-                            color:  '#9c9db0'
+                            fontSize: '14px',
+                            fontWeight: 600,
+                            color: '#9c9db0'
                         },
                     },
                     chart: {
@@ -129,10 +129,10 @@
                     },
                     tooltip: {
                         x: {
-                            format: 'yyyy-MM-dd HH:mm'
+                            format: 'yyyy-MM-dd HH:mm:ss'
                         },
                         y: {
-                            formatter: function(val, {series, seriesIndex, dataPointIndex, w}) {
+                            formatter: function (val, {series, seriesIndex, dataPointIndex, w}) {
                                 if (val != undefined) {
                                     return `${val} m/s`;
                                 }
@@ -151,7 +151,7 @@
                 ],
 
                 temperatureChartOptions: {
-                    colors:['#fa3e6d'], // 1: chart line
+                    colors: ['#fa3e6d'], // 1: chart line
                     markers: {
                         colors: ['#9C27B0'],
                     },
@@ -168,9 +168,9 @@
                         text: 'forecasts(Temperature)',
                         align: 'left',
                         style: {
-                            fontSize:  '14px',
-                            fontWeight:  600,
-                            color:  '#9c9db0'
+                            fontSize: '14px',
+                            fontWeight: 600,
+                            color: '#9c9db0'
                         },
                     },
                     chart: {
@@ -211,10 +211,10 @@
                     },
                     tooltip: {
                         x: {
-                            format: 'yyyy-MM-dd HH:mm'
+                            format: 'yyyy-MM-dd HH:mm:ss'
                         },
                         y: {
-                            formatter: function(val, {series, seriesIndex, dataPointIndex, w}) {
+                            formatter: function (val, {series, seriesIndex, dataPointIndex, w}) {
                                 if (val != undefined) {
                                     return `${val} 도`;
                                 }

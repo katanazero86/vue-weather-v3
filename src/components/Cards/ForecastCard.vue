@@ -16,7 +16,7 @@
               <div class="row align-items-center col-6">
                 <img :src="`${OPEN_WEATHER_ICONS_BASE_URL}/${item.weather[0].icon}@2x.png`" width="50"
                      height="50"/>
-                <span>{{ Math.round((item.main.temp - 273.15).toFixed(1)) }} °C</span>
+                <span>{{ (item.main.temp - 273.15).toFixed(1) }} °C</span>
               </div>
             </div>
           </td>

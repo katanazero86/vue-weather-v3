@@ -8,7 +8,7 @@
         <figure>
           <img :src="`${OPEN_WEATHER_ICONS_BASE_URL}/${currentWeather.weather[0].icon}@2x.png`" width="100"
                height="100"/>
-          <span class="weather-current-temperature">{{Math.round((currentWeather.main.temp - 273.15).toFixed(1))}} °C</span>
+          <span class="weather-current-temperature">{{ (currentWeather.main.temp - 273.15).toFixed(1) }} °C</span>
         </figure>
         <p>{{currentWeather.weather[0].main}}</p>
       </div>

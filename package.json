@@ -8,6 +8,8 @@
   "dependencies": {
     "apexcharts": "^3.27.3",
     "axios": "^0.21.1",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.33",
     "vue": "^3.0.4",
     "vue-router": "^4.0.10",
     "vue3-apexcharts": "^1.4.1",
