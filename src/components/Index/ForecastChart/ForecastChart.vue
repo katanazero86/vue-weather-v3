@@ -1,7 +1,7 @@
 <template>
   <section class="chart">
     <div class="row-wrap align-items-center justify-contents-between">
-      <div class="chart__wind col-12 col-sm-6">
+      <div class="chart__wind col-12 col-md-6">
         <apexchart
             width="100%"
             height="500"
@@ -10,7 +10,7 @@
             :series="renderWindChart"
         ></apexchart>
       </div>
-      <div class="chart__temperature col-12 col-sm-6">
+      <div class="chart__temperature col-12 col-md-6">
         <apexchart
             width="100%"
             height="500"
@@ -34,21 +34,18 @@
         },
         computed: {
             renderWindChart() {
-                const windDataArray = [];
                 if (this.forecast5Day && this.forecast5Day?.list) {
-                    this.forecast5Day.list.forEach(data => {
-                        windDataArray.push([
+                    this.windSeries[0].data = this.forecast5Day.list.map(data => {
+                        return [
                             `${convertUnixTimeStampIntoDate(data.dt)}`,
                             `${data.wind.speed}`
-                        ]);
+                        ]
                     });
                 }
-                this.windSeries[0].data = [...windDataArray];
                 return this.windSeries;
 
             },
             renderTemperatureChart() {
-                const temperatureDataArray = [];
                 if (this.forecast5Day && this.forecast5Day?.list) {
                     this.temperatureSeries[0].data = this.forecast5Day.list.map(data => {
                         return [
