@@ -7,7 +7,7 @@ export function convertUnixTimestampIntoDateFormatting(targetUnixTimestamp, form
         return moment.unix(targetUnixTimestamp).tz(KOREA_TIME_ZONE).format(formatString);
     }
 
-    return moment.unix(targetUnixTimestamp).tz(KOREA_TIME_ZONE).format('YYYY-MM-DD HH:mm:ss');
+    return Intl.DateTimeFormat('ko-KR', {dateStyle: 'medium', timeStyle: 'medium', timeZone: KOREA_TIME_ZONE}).format(new Date(targetUnixTimestamp * 1000));
 }
 
 export function convertUnixTimeStampIntoDate(targetUnixTimestamp) {

@@ -231,11 +231,6 @@
             };
         },
 
-        mounted() {
-            console.log(this.forecast5Day);
-        },
-
-
     });
 
     export default ForecastChart

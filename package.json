@@ -3,11 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --mode production"
+    "build": "vite build --mode production",
+    "start": "node ./server/server.js"
   },
   "dependencies": {
     "apexcharts": "^3.27.3",
     "axios": "^0.21.1",
+    "express": "^4.17.1",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.33",
     "vue": "^3.0.4",

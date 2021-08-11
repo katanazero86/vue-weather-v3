@@ -25,11 +25,11 @@
         },
         setup({forecast5Day}) {
             const customForecastList = computed(() => {
-                if (forecast5Day !== null && forecast5Day !== {}) {
+                if (forecast5Day !== null && forecast5Day !== undefined) {
                     const resultForecastList = [];
                     const targetForecast = {...forecast5Day};
-                    const dtTxt = targetForecast.list.map(forecast => forecast.dt_txt.split(' ')[0]);
-                    const dtTxtSet = new Set(dtTxt);
+                    const dtTxt = targetForecast?.list.map(forecast => forecast.dt_txt.split(' ')[0]);
+                    const dtTxtSet = dtTxt && new Set(dtTxt);
                     dtTxtSet.forEach(dtTxt => {
                         const resultForecastFilter = targetForecast.list.filter(forecast => forecast.dt_txt.split(' ')[0] === dtTxt);
                         resultForecastList.push(resultForecastFilter);
