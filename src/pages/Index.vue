@@ -22,10 +22,10 @@
     import Forecast5DaySection from '@/components/Index/Forecast5DaySection.vue';
     import ForecastChart from '@/components/Index/ForecastChart/ForecastChart.vue';
     import AlertModal from '@/components/Modal/AlertModal.vue';
-    import useAlertModal, {UseAlertModalInterface} from '@/customHooks/useAlertModal';
-    import useApiIsLoading from "@/customHooks/useApiIsLoading";
+    import useAlertModal, {UseAlertModalInterface} from '@/hooks/useAlertModal';
+    import useApiIsLoading from "@/hooks/useApiIsLoading";
     import cityList from '@/assets/js/city.list.kr';
-    import repositories from '@/repositories/index';
+    import repositories from '@/apis/index';
     import {NAMESPACE, actionTypes} from '@/store/modules/weatherModule/weatherModuleTypes';
 
     const API_KEY = import.meta.env.VITE_API_KEY;

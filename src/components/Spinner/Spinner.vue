@@ -1,19 +1,32 @@
 <template>
-  <div class="spinner row align-items-center justify-contents-center">
-    <div class="spinner__circle" :class="[small && `spinner__circle--small`, large && `spinner__circle--large`]"></div>
-  </div>
+  <transition name="fade">
+    <div class="spinner row align-items-center justify-contents-center" v-if="isLoading">
+      <div class="spinner__circle"
+           :class="[small && `spinner__circle--small`, large && `spinner__circle--large`]"></div>
+    </div>
+  </transition>
 </template>
 
 <script lang="ts">
-    import {defineComponent} from 'vue'
+    import {defineComponent, computed} from 'vue'
+    import {useStore} from 'vuex';
 
     const Spinner = defineComponent({
         name: 'Spinner',
         props: {
             small: {type: Boolean, default: false},
             large: {type: Boolean, default: false},
-        }
-    })
+        },
+        setup() {
+            const store = useStore();
+            const isLoading = computed(() => store.state.isLoading);
+
+            return {
+                isLoading,
+            }
+        },
+    });
+
     export default Spinner
 </script>
 

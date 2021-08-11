@@ -3,15 +3,18 @@ import {RouteRecordRaw} from 'vue-router';
 const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
-        component: () => import('../layouts/DefaultLayout.vue'),
+        components: {
+            default: () => import('../components/Layouts/DefaultLayout.vue'),
+            spinner: () => import('../components/Spinner/Spinner.vue'),
+        },
         children: [
             {
                 path: '',
-                component: () => import('../views/Index.vue'),
+                component: () => import('../pages/Index.vue'),
             },
             {
                 path: 'about',
-                component: () => import('../views/About/About.vue'),
+                component: () => import('../pages/About/About.vue'),
             }
         ]
     }
