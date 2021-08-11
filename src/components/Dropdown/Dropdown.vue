@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-    import {defineComponent, ref, onMounted, onBeforeUnmount} from 'vue';
+    import {defineComponent, ref, onMounted, onBeforeUnmount, onUpdated} from 'vue';
     import {Ref} from 'vue';
     import DropdownArrowUp from '@/components/Icons/DropdownArrowUp.vue';
     import DropdownArrowDown from '@/components/Icons/DropdownArrowDown.vue';
@@ -36,13 +36,13 @@
         },
         emits: ['select'],
         setup({label, items, selectedItem}, {emit}) {
-            const dropdown:Ref<HTMLElement> = ref(null);
-            const isOpenDropdown:Ref<boolean> = ref(false);
+            const dropdown: Ref<HTMLElement> = ref(null);
+            const isOpenDropdown: Ref<boolean> = ref(false);
             const toggleDropdown = () => {
                 isOpenDropdown.value = !isOpenDropdown.value;
             };
 
-            const closeDropdown = (e:Event) => {
+            const closeDropdown = (e: Event) => {
                 const dropdownEl = dropdown.value;
                 if (dropdownEl) {
                     if (!dropdownEl.contains(e.target as HTMLElement)) isOpenDropdown.value = false;
@@ -50,6 +50,7 @@
             }
 
             const selectItem = (targetItem: object) => {
+                console.log(targetItem);
                 emit('select', {...targetItem});
                 isOpenDropdown.value = false;
             };
@@ -77,7 +78,7 @@
 <style lang="scss" scoped>
   @import "../../assets/scss/common/variables";
 
-  $selectHeight : 40px;
+  $selectHeight: 40px;
 
   .dropdown {
 
@@ -97,6 +98,7 @@
       position: absolute;
       left: 0;
       right: 0;
+
       ul {
         max-height: 500px;
         overflow: auto;

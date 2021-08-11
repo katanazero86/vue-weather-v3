@@ -127,7 +127,6 @@
                 if (result.status === 200) {
                     const responseData = {...result.data};
                     store.dispatch(`${NAMESPACE}/${actionTypes.FORECAST_5_DAY_ACTION}`, responseData);
-                    selectedItem.value = {};
                 } else {
 
                 }
