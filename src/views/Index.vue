@@ -13,7 +13,7 @@
 </template>
 
 <script lang="ts">
-    import {defineComponent, ref, computed} from 'vue';
+    import {defineComponent, ref, computed, onUnmounted} from 'vue';
     import {Ref} from 'vue';
     import {useStore} from 'vuex';
     import MyLocationSection from '@/components/Index/MyLocationSection.vue';
@@ -162,6 +162,10 @@
                 findCurrentWeatherByCity(q);
                 findForecast5DayByCity(q);
             };
+
+            onUnmounted(() => {
+                store.dispatch(`${NAMESPACE}/${actionTypes.INIT_STATES_ACTION}`);
+            });
 
             return {
                 handleError,

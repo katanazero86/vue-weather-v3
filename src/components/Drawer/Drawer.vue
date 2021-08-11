@@ -37,8 +37,9 @@
                     window.location.reload();
                 } else {
                     router.push({
-                        path: '/about',
+                        path,
                     });
+                    handleOverlayClick();
                 }
             }
 

@@ -50,7 +50,6 @@
             }
 
             const selectItem = (targetItem: object) => {
-                console.log(targetItem);
                 emit('select', {...targetItem});
                 isOpenDropdown.value = false;
             };
