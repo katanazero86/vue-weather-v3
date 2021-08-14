@@ -15,7 +15,7 @@
 
 <script lang="ts">
     import {defineComponent, computed} from 'vue';
-    import ForecastCard from '@/components/Cards/ForecastCard.vue';
+    import ForecastCard from '@/components/Index/Card/ForecastCard.vue';
 
     const Forecast5DaySection = defineComponent({
         name: 'Forecast5DaySection',

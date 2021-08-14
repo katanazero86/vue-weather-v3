@@ -23,7 +23,7 @@
     import ForecastChart from '@/components/Index/ForecastChart/ForecastChart.vue';
     import AlertModal from '@/components/Modal/AlertModal.vue';
     import useAlertModal, {UseAlertModalInterface} from '@/hooks/useAlertModal';
-    import useApiIsLoading from "@/hooks/useApiIsLoading";
+    import useApi from "@/hooks/useApi";
     import cityList from '@/assets/js/city.list.kr';
     import repositories from '@/apis/index';
     import {NAMESPACE, actionTypes} from '@/store/modules/weatherModule/weatherModuleTypes';
@@ -45,7 +45,7 @@
             const store = useStore();
             const currentWeather = computed(() => store.state.weatherModule.currentWeather);
             const forecast5Day = computed(() => store.state.weatherModule.forecast5Day);
-            const {onIsLoading, offIsLoading} = useApiIsLoading();
+            const {runApi} = useApi();
             const selectedItem: Ref<object> = ref({});
 
             const {
@@ -73,87 +73,116 @@
             };
 
             const findCurrentWeatherByCity = async q => {
-                onIsLoading();
-                const result = await repositories.weatherRepository.findCurrentWeatherByCity({
+                const actionName = `${NAMESPACE}/${actionTypes.CURRENT_WEATHER_ACTION}`;
+                const result = await runApi(repositories.weatherRepository.findCurrentWeatherByCity, {
                     q,
-                    appId: API_KEY,
-                }).catch(error => {
-                    console.log(error.response.status, error.response.data?.message);
-                    offIsLoading();
-                });
+                    appId: API_KEY
+                }, actionName);
 
-                if (result.status === 200) {
-                    const responseData = {...result.data};
-                    store.dispatch(`${NAMESPACE}/${actionTypes.CURRENT_WEATHER_ACTION}`, responseData);
-                } else {
-
-                }
-
-                offIsLoading();
+                // 리팩토링 전
+                // onIsLoading();
+                // const result = await repositories.weatherRepository.findCurrentWeatherByCity({
+                //     q,
+                //     appId: API_KEY,
+                // }).catch(error => {
+                //     console.log(error.response.status, error.response.data?.message);
+                //     offIsLoading();
+                // });
+                //
+                // if (result.status === 200) {
+                //     const responseData = {...result.data};
+                //     store.dispatch(`${NAMESPACE}/${actionTypes.CURRENT_WEATHER_ACTION}`, responseData);
+                // } else {
+                //
+                // }
+                //
+                // offIsLoading();
             };
 
             const findCurrentWeatherByGeographicCoordinates = async (lat, lon) => {
-                onIsLoading();
-                const result = await repositories.weatherRepository.findCurrentWeatherByGeographicCoordinates({
+                const actionName = `${NAMESPACE}/${actionTypes.CURRENT_WEATHER_ACTION}`;
+                const result = await runApi(repositories.weatherRepository.findCurrentWeatherByCity, {
                     lat,
                     lon,
-                    appId: API_KEY,
-                }).catch(error => {
-                    console.log(error.response.status, error.response.data?.message);
-                    offIsLoading();
-                });
+                    appId: API_KEY
+                }, actionName);
 
-                if (result.status === 200) {
-                    const responseData = {...result.data};
-                    store.dispatch(`${NAMESPACE}/${actionTypes.CURRENT_WEATHER_ACTION}`, responseData);
-                    selectedItem.value = {};
-                } else {
-
-                }
-
-                offIsLoading();
+                // 리팩토링 전
+                // onIsLoading();
+                // const result = await repositories.weatherRepository.findCurrentWeatherByGeographicCoordinates({
+                //     lat,
+                //     lon,
+                //     appId: API_KEY,
+                // }).catch(error => {
+                //     console.log(error.response.status, error.response.data?.message);
+                //     offIsLoading();
+                // });
+                //
+                // if (result.status === 200) {
+                //     const responseData = {...result.data};
+                //     store.dispatch(`${NAMESPACE}/${actionTypes.CURRENT_WEATHER_ACTION}`, responseData);
+                //     selectedItem.value = {};
+                // } else {
+                //
+                // }
+                //
+                // offIsLoading();
             };
 
             const findForecast5DayByCity = async q => {
-                onIsLoading();
-                const result = await repositories.weatherRepository.findForecast5DayByCity({
+                const actionName = `${NAMESPACE}/${actionTypes.FORECAST_5_DAY_ACTION}`;
+                const result = await runApi(repositories.weatherRepository.findForecast5DayByCity, {
                     q,
-                    appId: API_KEY,
-                }).catch(error => {
-                    console.log(error.response.status, error.response.data?.message);
-                    offIsLoading();
-                });
+                    appId: API_KEY
+                }, actionName);
 
-                if (result.status === 200) {
-                    const responseData = {...result.data};
-                    store.dispatch(`${NAMESPACE}/${actionTypes.FORECAST_5_DAY_ACTION}`, responseData);
-                } else {
-
-                }
-
-                offIsLoading();
+                // 리팩토링 전
+                // onIsLoading();
+                // const result = await repositories.weatherRepository.findForecast5DayByCity({
+                //     q,
+                //     appId: API_KEY,
+                // }).catch(error => {
+                //     console.log(error.response.status, error.response.data?.message);
+                //     offIsLoading();
+                // });
+                //
+                // if (result.status === 200) {
+                //     const responseData = {...result.data};
+                //     store.dispatch(`${NAMESPACE}/${actionTypes.FORECAST_5_DAY_ACTION}`, responseData);
+                // } else {
+                //
+                // }
+                //
+                // offIsLoading();
             };
 
             const findForecast5DayByGeographicCoordinates = async (lat, lon) => {
-                onIsLoading();
-                const result = await repositories.weatherRepository.findForecast5DayByGeographicCoordinates({
+                const actionName = `${NAMESPACE}/${actionTypes.FORECAST_5_DAY_ACTION}`;
+                const result = await runApi(repositories.weatherRepository.findForecast5DayByGeographicCoordinates, {
                     lat,
                     lon,
-                    appId: API_KEY,
-                }).catch(error => {
-                    console.log(error.response.status, error.response.data?.message);
-                    offIsLoading();
-                });
+                    appId: API_KEY
+                }, actionName);
 
-                if (result.status === 200) {
-                    const responseData = {...result.data};
-                    store.dispatch(`${NAMESPACE}/${actionTypes.FORECAST_5_DAY_ACTION}`, responseData);
-                    selectedItem.value = {};
-                } else {
-
-                }
-
-                offIsLoading();
+                // 리팩토링 전
+                // onIsLoading();
+                // const result = await repositories.weatherRepository.findForecast5DayByGeographicCoordinates({
+                //     lat,
+                //     lon,
+                //     appId: API_KEY,
+                // }).catch(error => {
+                //     console.log(error.response.status, error.response.data?.message);
+                //     offIsLoading();
+                // });
+                //
+                // if (result.status === 200) {
+                //     const responseData = {...result.data};
+                //     store.dispatch(`${NAMESPACE}/${actionTypes.FORECAST_5_DAY_ACTION}`, responseData);
+                //     selectedItem.value = {};
+                // } else {
+                //
+                // }
+                // offIsLoading();
             }
 
             const handleDropdownSelect = targetItem => {

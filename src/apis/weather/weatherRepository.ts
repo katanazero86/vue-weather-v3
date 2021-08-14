@@ -1,7 +1,26 @@
 // https://openweathermap.org/current
 // https://openweathermap.org/forecast5
 
-export default (api, axios) => {
+interface byCityNameInterface {
+    q: string,
+    appId: string,
+}
+
+interface byGeographicCoordinates {
+    lat: string,
+    lon: string,
+    appId: string,
+}
+
+interface weatherRepositoryInterface {
+    findCurrentWeatherByCity({q, appId}: byCityNameInterface): Promise<any>,
+    findCurrentWeatherByGeographicCoordinates({lat, lon, appId}: byGeographicCoordinates): Promise<any>,
+    findForecast5DayByCity({q, appId}: byCityNameInterface): Promise<any>,
+    findForecast5DayByGeographicCoordinates({lat, lon, appId}: byGeographicCoordinates): Promise<any>
+}
+
+export default (api, axios): weatherRepositoryInterface => {
+
     return {
         /**
          * 한 위치에 대한 현재 날씨를 조회
@@ -9,7 +28,7 @@ export default (api, axios) => {
          * @param q
          * @param appId
          */
-        async findCurrentWeatherByCity({q, appId}) {
+        async findCurrentWeatherByCity({q, appId}: byCityNameInterface): Promise<any> {
             return api.get(`/weather?q=${q}&appid=${appId}`)
         },
 
@@ -19,7 +38,7 @@ export default (api, axios) => {
          * @param lon
          * @param appId
          */
-        async findCurrentWeatherByGeographicCoordinates({lat, lon, appId}) {
+        async findCurrentWeatherByGeographicCoordinates({lat, lon, appId}: byGeographicCoordinates): Promise<any> {
             return api.get(`/weather?lat=${lat}&lon=${lon}&appid=${appId}`)
         },
 
@@ -29,7 +48,7 @@ export default (api, axios) => {
          * @param q
          * @param appId
          */
-        async findForecast5DayByCity({q, appId}) {
+        async findForecast5DayByCity({q, appId}: byCityNameInterface): Promise<any> {
             return api.get(`/forecast?q=${q}&appid=${appId}`)
         },
 
@@ -39,8 +58,8 @@ export default (api, axios) => {
          * @param lon
          * @param appId
          */
-        async findForecast5DayByGeographicCoordinates({lat, lon, appId}) {
+        async findForecast5DayByGeographicCoordinates({lat, lon, appId}: byGeographicCoordinates): Promise<any> {
             return api.get(`/forecast?lat=${lat}&lon=${lon}&appid=${appId}`)
         }
-    }
+    };
 }
