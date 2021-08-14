@@ -8,7 +8,7 @@ export default function useApi() {
     const store = useStore();
 
     // fetch loading
-    const isLoading = computed(() => store.state.isLoading);
+    const isLoading = computed(() => store.state.isLoading); // for use another ui or Skeleton ui
     const onIsLoading = () => {
         store.dispatch(actionTypes.ON_IS_LOADING_ACTION);
     };
