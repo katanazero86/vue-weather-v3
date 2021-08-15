@@ -68,6 +68,7 @@
             const getGeolocationPosition = targetGeolocationPosition => {
                 const lat = targetGeolocationPosition?.coords?.latitude;
                 const lon = targetGeolocationPosition?.coords?.longitude;
+                selectedItem.value = {};
                 findCurrentWeatherByGeographicCoordinates(lat, lon);
                 findForecast5DayByGeographicCoordinates(lat, lon);
             };
@@ -101,7 +102,7 @@
 
             const findCurrentWeatherByGeographicCoordinates = async (lat, lon) => {
                 const actionName = `${NAMESPACE}/${actionTypes.CURRENT_WEATHER_ACTION}`;
-                const result = await runApi(repositories.weatherRepository.findCurrentWeatherByCity, {
+                const result = await runApi(repositories.weatherRepository.findCurrentWeatherByGeographicCoordinates, {
                     lat,
                     lon,
                     appId: API_KEY

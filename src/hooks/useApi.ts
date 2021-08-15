@@ -22,6 +22,7 @@ export default function useApi() {
         const apiResult = await targetApi(apiParams).catch(error => {
             // api error handling
             console.log(error.response.status, error.response.data?.message);
+        }).finally(() => {
             offIsLoading();
         });
 
@@ -31,11 +32,9 @@ export default function useApi() {
             if (actionName.trim() !== '' && actionName !== null) {
                 store.dispatch(actionName, responseData);
             }
-            offIsLoading();
             return responseData;
         } else {
             // status 가 200 이 아닌 경우 handling
-            offIsLoading();
         }
 
     }
