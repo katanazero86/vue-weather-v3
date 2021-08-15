@@ -15,11 +15,6 @@
         typescript 가 적용되어 있습니다. <br/>
         Vite 번들러를 이용합니다.(Rollup.js 기반)
       </p>
-      <p class="resume">
-        저의 대해서 관심이 가신다면, 이력서 및 경력기술서 Notion 링크를 참고해주세요!<br/>
-        <a href="https://valley-headlight-a30.notion.site/Web-developer-44da23f7d0a1484ba6a7513f018783e1"
-           target="_blank">이력서 및 경력기술서</a>
-      </p>
     </div>
   </div>
 </template>
@@ -57,21 +52,6 @@
       .project-info {
         padding: 10px 0;
       }
-
-      .resume {
-        padding: 10px 0;
-
-        a {
-          color: #FC4A1A;
-        }
-
-        @media (hover: hover) {
-          a:hover {
-            color: $white-color;
-          }
-        }
-      }
-
 
     }
 
