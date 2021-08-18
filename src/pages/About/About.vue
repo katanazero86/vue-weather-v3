@@ -13,7 +13,7 @@
         Vue.js 3 로 작업을 진행하였으며, CSS Preprocessor 는 SCSS 가 적용이 되어있습니다.<br/>
         vuex 및 vue-router 가 적용되어 있습니다. <br/>
         typescript 가 적용되어 있습니다. <br/>
-        Vite 번들러를 이용합니다.(Rollup.js 기반)
+        Vite 를 이용하여, 프로젝트를 생성하였습니다. (Rollup.js 기반)
       </p>
     </div>
   </div>
