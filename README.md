@@ -7,7 +7,7 @@
 > - Owner & Maintainer
 > - github. [https://github.com/katanazero86/vue-weather-v3](https://github.com/katanazero86/vue-weather-v3)
 > - Vite 를 이용하여 프로젝트 생성(Node.js >= 12.0.0) : https://vitejs.dev/
-> - 원하는 도시를 선택하면, openweathermap 서비스(https://openweathermap.org/api) 에서 날씨를 조회 후 표시해줍니다. 날씨는 현재날씨와 시간별 날씨예보(4일치) 정보를 조회합니다.
+> - 원하는 도시를 선택하면, openweathermap 서비스(https://openweathermap.org/api) 에서 날씨를 조회 후 표시 합니다. 날씨는 현재 날씨와 시간별 날씨예보(4일치) 정보를 조회 합니다.
 
 ---
 
