@@ -64,5 +64,13 @@
       }
     }
 
+    @media (hover:none) {
+      &__link {
+        span:active {
+          color: $primary-color;
+        }
+      }
+    }
+
   }
 </style>
