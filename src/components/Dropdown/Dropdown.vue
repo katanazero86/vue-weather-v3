@@ -77,6 +77,7 @@
 
 <style lang="scss" scoped>
   @import "../../assets/scss/common/variables";
+  @import "../../assets/scss/common/mixins";
 
   $selectHeight: 40px;
 
@@ -119,8 +120,15 @@
           padding-top: 4px;
         }
 
-        @media (hover: hover) {
+        @include pointer-fine() {
           li:hover {
+            color: $primary-color;
+            background: #f8f8f8;
+          }
+        }
+
+        @include pointer-coarse() {
+          li:active {
             color: $primary-color;
             background: #f8f8f8;
           }

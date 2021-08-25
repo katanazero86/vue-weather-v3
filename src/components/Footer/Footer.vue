@@ -54,17 +54,18 @@
         cursor: pointer;
       }
 
-      @media (pointer: fine) {
+      @include pointer-fine() {
         span:hover {
           color: $primary-color;
         }
       }
 
-      @media (pointer: coarse) {
+      @include pointer-coarse() {
         span:active {
           color: $primary-color;
         }
       }
+
     }
 
   }

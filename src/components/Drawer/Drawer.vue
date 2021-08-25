@@ -98,15 +98,27 @@
 
         }
 
-        @media (hover: hover) {
+        @include pointer-fine() {
           .item:hover {
             > span {
               color: $primary-color;
               transform: translateX(6px);
               transition-duration: 0.3s;
             }
+
           }
         }
+
+        @include pointer-coarse() {
+          .item:active {
+            >  span {
+              color: $primary-color;
+              transform: translateX(6px);
+              transition-duration: 0.3s;
+            }
+          }
+        }
+
       }
     }
   }
