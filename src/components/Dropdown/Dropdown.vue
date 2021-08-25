@@ -38,7 +38,8 @@
         setup({label, items, selectedItem}, {emit}) {
             const dropdown: Ref<HTMLElement> = ref(null);
             const isOpenDropdown: Ref<boolean> = ref(false);
-            const toggleDropdown = () => {
+            const toggleDropdown = e => {
+                e.stopPropagation();
                 isOpenDropdown.value = !isOpenDropdown.value;
             };
 
