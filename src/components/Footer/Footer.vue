@@ -64,7 +64,7 @@
       }
     }
 
-    @media (hover:none) {
+    @media (pointer: coarse) {
       &__link {
         span:active {
           color: $primary-color;
