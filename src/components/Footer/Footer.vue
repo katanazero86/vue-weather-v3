@@ -53,19 +53,14 @@
       span {
         cursor: pointer;
       }
-    }
 
-
-    @media (hover: hover) {
-      &__link {
+      @media (pointer: fine) {
         span:hover {
           color: $primary-color;
         }
       }
-    }
 
-    @media (pointer: coarse) {
-      &__link {
+      @media (pointer: coarse) {
         span:active {
           color: $primary-color;
         }
