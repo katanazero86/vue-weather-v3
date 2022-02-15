@@ -3,49 +3,36 @@ import {Ref} from 'vue';
 
 export interface UseAlertModalInterface {
     isOpen: Ref<boolean>,
-    openIsOpen(): void,
-    closeIsOpen(): void,
     alertModalTitle: Ref<string>,
-    setAlertModalTitle(targetTitle: string): void,
     alertModalContent: Ref<string>,
-    setAlertModalContent(targetContent: string): void,
-    initTitleAndContent(): void,
+    openAlertModal(): void,
+    closeAlertModal(): void,
 }
 
 export default function useAlertModal(): UseAlertModalInterface {
 
     const isOpen = ref<boolean>(false);
-    const openIsOpen = (): void => {
+    const openAlertModal: () => void = () => {
         isOpen.value = true;
     };
-    const closeIsOpen = (): void => {
+    const closeAlertModal: () => void = () => {
         isOpen.value = false;
-        initTitleAndContent();
+        initAlertModalStates();
     };
 
-    const alertModalTitle = ref<string>('알림'); // title
-    const setAlertModalTitle = (targetTitle: string): void => {
-        alertModalContent.value = targetTitle.trim() ? targetTitle.trim() : '';
-    }
+    const alertModalTitle = ref<string>('알림');
+    const alertModalContent = ref<string>('');
 
-    const alertModalContent = ref<string>(''); // content
-    const setAlertModalContent = (targetContent: string): void => {
-        alertModalContent.value = targetContent.trim() ? targetContent.trim() : '';
-    }
-
-    const initTitleAndContent = (): void => {
+    const initAlertModalStates: () => void = (): void => {
         alertModalContent.value = '알림';
         alertModalContent.value = '';
-    }
+    };
 
     return {
         isOpen,
-        openIsOpen,
-        closeIsOpen,
         alertModalTitle,
-        setAlertModalTitle,
         alertModalContent,
-        setAlertModalContent,
-        initTitleAndContent,
+        openAlertModal,
+        closeAlertModal,
     }
 }

@@ -1,15 +1,16 @@
 <template>
+<!--  <div class="index">-->
+<!--    <Dropdown class="py-3" :items="cityList" label="원하시는 도시를 선택해주세요 :)" :selectedItem="selectedItem"-->
+<!--              @select="handleDropdownSelect"/>-->
+<!--    <CurrentWeather :currentWeather="currentWeather" v-if="currentWeather"/>-->
+<!--    <template v-if="forecast5Day">-->
+<!--      <Forecast5DaySection :forecast5Day="forecast5Day"/>-->
+<!--      <ForecastChart :forecast5Day="forecast5Day"/>-->
+<!--    </template>-->
+<!--  </div>-->
   <div class="index">
-    <MyLocationSection class="py-3" @handleError="handleError" @geolocationPosition="getGeolocationPosition"/>
-    <Dropdown class="py-3" :items="cityList" label="원하시는 도시를 선택해주세요 :)" :selectedItem="selectedItem"
-              @select="handleDropdownSelect"/>
-    <CurrentWeather :currentWeather="currentWeather" v-if="currentWeather"/>
-    <template v-if="forecast5Day">
-      <Forecast5DaySection :forecast5Day="forecast5Day"/>
-      <ForecastChart :forecast5Day="forecast5Day"/>
-    </template>
+    <WeatherIndex />
   </div>
-  <AlertModal v-if="isOpen" :title="alertModalTitle" :content="alertModalContent" @close="closeIsOpen"/>
 </template>
 
 <script lang="ts">
@@ -22,18 +23,18 @@ import CurrentWeather from '@/components/Index/CurrentWeather.vue';
 import Forecast5DaySection from '@/components/Index/Forecast5DaySection.vue';
 import ForecastChart from '@/components/Index/ForecastChart/ForecastChart.vue';
 import AlertModal from '@/components/Modal/AlertModal.vue';
-import useAlertModal, {UseAlertModalInterface} from '@/hooks/useAlertModal';
 import useApi from "@/hooks/useApi";
 import cityList from '@/assets/js/city.list.kr';
 import repositories from '@/apis/index';
 import {NAMESPACE, actionTypes} from '@/store/modules/weatherModule/weatherModuleTypes';
+import WeatherIndex from "@/components/Weather/WeatherIndex.vue";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 const Index = defineComponent({
   name: 'Index',
   components: {
-    MyLocationSection,
+    WeatherIndex,
     Dropdown,
     CurrentWeather,
     Forecast5DaySection,
@@ -47,31 +48,6 @@ const Index = defineComponent({
     const forecast5Day = computed(() => store.state.weatherModule.forecast5Day);
     const {runApi} = useApi();
     const selectedItem: Ref<object> = ref({});
-
-    const {
-      isOpen,
-      openIsOpen,
-      closeIsOpen,
-      alertModalTitle,
-      setAlertModalTitle,
-      alertModalContent,
-      setAlertModalContent,
-      initTitleAndContent,
-    }: UseAlertModalInterface = useAlertModal();
-
-    const handleError = ({title, content}) => {
-      alertModalTitle.value = title;
-      alertModalContent.value = content;
-      openIsOpen();
-    };
-
-    const getGeolocationPosition = targetGeolocationPosition => {
-      const lat = targetGeolocationPosition?.coords?.latitude;
-      const lon = targetGeolocationPosition?.coords?.longitude;
-      selectedItem.value = {};
-      findCurrentWeatherByGeographicCoordinates(lat, lon);
-      findForecast5DayByGeographicCoordinates(lat, lon);
-    };
 
     const findCurrentWeatherByCity = async q => {
       const actionName = `${NAMESPACE}/${actionTypes.CURRENT_WEATHER_ACTION}`;
@@ -120,16 +96,6 @@ const Index = defineComponent({
     });
 
     return {
-      handleError,
-      getGeolocationPosition,
-      isOpen,
-      openIsOpen,
-      closeIsOpen,
-      alertModalTitle,
-      setAlertModalTitle,
-      alertModalContent,
-      setAlertModalContent,
-      initTitleAndContent,
       cityList,
       selectedItem,
       handleDropdownSelect,

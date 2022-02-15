@@ -1,7 +1,7 @@
 <template>
   <div class="modal">
-    <section class="modal__overlay" @click.self="$emit('close')">
-      <section class="modal-body pa-5">
+    <div class="modal__overlay" @click.self="$emit('close')">
+      <div class="modal-body pa-5">
         <header class="modal-body__header row align-items-center justify-contents-between">
           <h2>
             {{title}}
@@ -14,8 +14,8 @@
         <div class="modal-body__button">
           <BasicButton block small name="확인" @click="$emit('close')"/>
         </div>
-      </section>
-    </section>
+      </div>
+    </div>
   </div>
 </template>
 
