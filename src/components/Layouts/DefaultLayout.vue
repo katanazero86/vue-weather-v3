@@ -1,6 +1,6 @@
 <template>
   <Header v-once/>
-  <router-view/>
+    <router-view/>
   <Footer v-once/>
 </template>
 

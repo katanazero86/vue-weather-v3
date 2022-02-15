@@ -20,16 +20,23 @@
         :root {
             --background: #E6DDD5;
             --weather-background: #E5C7B5;
+            --header-background: #E5C7B5;
+            --footer-background: #E5C7B5;
 
             --forecasts-title-background: #E5C7B5;
             --forecasts-background: #EEE3DB;
 
-            --primay-font-color: #AA6C48;
-            --secondary-font-color: #474747;
-            --title-font-color: #6F6F6F;
-            --card-font-color: #FFFFFF;
+            --current-title-color: #474747;
+            --current-status-color: #474747;
+            --current-value-color: #AA6C48;
 
-            --border-color: #FFFFFF;
+            --footer-color: #474747;
+            --header-color: #474747;
+
+            --gray-font-color: #6F6F6F;
+            --white-font-color: #FFFFFF;
+
+            --border-color: #fafafa;
 
             --dropdown-bachground: #FDFEFA;
             --dropdown-basic-font-color: #ACACAC;
@@ -40,10 +47,12 @@
         html, body {
             margin: 0;
             padding: 0;
+            width: 100%;
+            height: 100vh;
         }
 
         body {
-            height: 100vh;
+            min-width: 370px;
         }
 
         h1, h2, h3, h4, h5, h6, p {
@@ -61,6 +70,14 @@
             font-family: 'Noto Sans KR', sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
+
+        #app {
+            position: relative;
+            height: 100%;
+            overflow: auto;
+            background-color: var(--background);
+        }
+
     </style>
 </head>
 <body>

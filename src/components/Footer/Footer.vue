@@ -42,9 +42,9 @@
   .footer {
     font-size: 14px;
     letter-spacing: -0.5px;
-    font-weight: 400;
-    background-color: $background-color;
-    color: $white-color;
+    font-weight: 500;
+    background-color: var(--footer-background);
+    color: var(--footer-color);
 
     &__description {
     }
@@ -56,13 +56,13 @@
 
       @include pointer-fine() {
         span:hover {
-          color: $primary-color;
+          text-decoration: underline;
         }
       }
 
       @include pointer-coarse() {
         span:active {
-          color: $primary-color;
+          text-decoration: underline;
         }
       }
 

@@ -6,14 +6,13 @@
       </h2>
       <div class="weather">
         <figure>
-          <img :src="weatherIconUrl" width="100"
-               height="100"/>
-          <span class="weather-current-temperature">{{ (currentWeather.main.temp - 273.15).toFixed(1) }} °C</span>
+          <img :src="getIconUrl" width="100" height="100"/>
+          <span class="weather-current-temperature">{{ getTemperature }} °C</span>
         </figure>
         <p>{{ currentWeather.weather[0].main }}</p>
       </div>
     </header>
-    <div class="current-weather__body pa-3">
+    <div class="current-weather__body pa-6">
       <div class="weather-item">
         <p class="weather-item__title">풍향(Wind)</p>
         <p class="weather-item__value">{{ currentWeather.wind.speed }} m/s | {{ currentWeather.wind.deg }} deg</p>
@@ -47,33 +46,39 @@
 </template>
 
 <script>
-import {defineComponent} from 'vue';
+import {defineComponent, computed, toRefs } from 'vue';
 import {convertUnixTimestampIntoDateFormatting} from '@/utils/dateUtils';
 
 const OPEN_WEATHER_ICONS_BASE_URL = import.meta.env.VITE_OPEN_WEATHER_ICONS_BASE_URL;
 
-const CurrentWeatherSection = defineComponent({
-  name: 'CurrentWeatherSection',
+const CurrentWeather = defineComponent({
+  name: 'CurrentWeather',
   props: {
     currentWeather: {type: Object, default: {}},
   },
   setup(props) {
 
-    const currentWeather = props;
+    const getIconUrl = computed(() => {
+      return `${OPEN_WEATHER_ICONS_BASE_URL}/${props.currentWeather.weather[0].icon}@2x.png`;
+    });
 
-    const weatherIconUrl = `${OPEN_WEATHER_ICONS_BASE_URL}/${currentWeather.weather[0].icon}@2x.png`;
+    const getTemperature = computed(() => {
+      return (props.currentWeather.main.temp - 273.15).toFixed(1);
+    });
 
     return {
-      weatherIconUrl,
+      getIconUrl,
+      getTemperature,
       convertUnixTimestampIntoDateFormatting,
     }
   }
 });
 
-export default CurrentWeatherSection
+export default CurrentWeather
 </script>
 
 <style lang="scss" scoped>
+@import '../../assets/scss/common/variables';
 
 .current-weather {
 
@@ -84,12 +89,12 @@ export default CurrentWeatherSection
 
   &__header {
     > h2 {
-      color: $white-color;
+      color: var(--current-title-color);
     }
 
     .weather {
       text-align: center;
-      color: $white-color;
+      color: var(--current-status-color);
 
       > figure {
         padding: 8px;
@@ -103,8 +108,8 @@ export default CurrentWeatherSection
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
-    background-color: rgba(179, 209, 255, .45);
-    border-radius: 8px;
+    background-color: var(--weather-background);
+    border-radius: 20px;
 
     .weather-item {
       padding: 10px;
@@ -116,22 +121,23 @@ export default CurrentWeatherSection
         text-align: center;
         font-size: 14px;
         letter-spacing: -0.3px;
-        color: $white-color;
+        color: var(--white-font-color);
       }
 
       &__value {
         font-size: 13px;
         font-weight: 500;
         text-align: center;
-        color: $dark-color;
+        color: var(--current-value-color);
       }
     }
 
     .weather-item:not(:last-child) {
-      border-bottom: 1px solid $border-color;
+      border-bottom: 1px solid var(--border-color);
     }
 
     table {
+
 
       thead {
         text-align: center;
