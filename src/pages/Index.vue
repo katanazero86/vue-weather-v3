@@ -9,7 +9,7 @@
       <ForecastChart :forecast5Day="forecast5Day"/>
     </template>
   </div>
-  <!--  <AlertModal v-if="isOpen" :title="alertModalTitle" :content="alertModalContent" @close="closeIsOpen"/>-->
+  <AlertModal v-if="isOpen" :title="alertModalTitle" :content="alertModalContent" @close="closeIsOpen"/>
 </template>
 
 <script lang="ts">

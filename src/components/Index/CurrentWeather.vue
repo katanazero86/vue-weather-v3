@@ -14,7 +14,7 @@
     </header>
     <div class="current-weather__body pa-6">
       <div class="weather-item">
-        <p class="weather-item__title">풍향(Wind)</p>
+        <p class="weather-item__title">풍속(Wind)</p>
         <p class="weather-item__value">{{ currentWeather.wind.speed }} m/s | {{ currentWeather.wind.deg }} deg</p>
       </div>
       <div class="weather-item">
@@ -116,17 +116,17 @@ export default CurrentWeather
       display: flex;
       align-items: center;
       justify-content: space-between;
+      font-weight: 500;
 
       &__title {
         text-align: center;
         font-size: 14px;
         letter-spacing: -0.3px;
-        color: var(--white-font-color);
+        color: var(--current-item-color);
       }
 
       &__value {
         font-size: 13px;
-        font-weight: 500;
         text-align: center;
         color: var(--current-value-color);
       }

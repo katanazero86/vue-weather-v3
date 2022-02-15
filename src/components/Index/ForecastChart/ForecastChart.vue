@@ -60,16 +60,16 @@
         data(): object {
             return {
                 windChartOptions: {
-                    colors: ['#fa3e6d'], // 1: chart line
+                    colors: ['#EC6E4C'], // 1: chart line
                     markers: {
-                        colors: ['#9C27B0'],
+                        colors: ['#d14c28'],
                     },
                     grid: {
                         row: {
-                            colors: ['#9c9db0']
+                            colors: ['#f2e8e1']
                         },
                         column: {
-                            colors: ['#9c9db0']
+                            colors: ['#f2e8e1']
                         },
                         strokeDashArray: 2
                     },
@@ -84,7 +84,7 @@
                         style: {
                             fontSize: '14px',
                             fontWeight: 600,
-                            color: '#9c9db0'
+                            color: '#474747'
                         },
                     },
                     chart: {
@@ -98,14 +98,14 @@
                         title: {
                             text: 'Wind',
                             style: {
-                                color: '#fff', // forecolor
+                                color: '#474747', // forecolor
                                 fontSize: '12px',
                                 fontWeight: 600,
                             },
                         },
                         labels: {
                             style: {
-                                colors: '#fafafa',
+                                colors: '#474747',
                                 fontSize: '12px',
                                 fontWeight: 500,
                             },
@@ -115,7 +115,7 @@
                         type: 'datetime',
                         labels: {
                             style: {
-                                colors: '#fafafa',
+                                colors: '#474747',
                                 fontSize: '12px',
                                 fontWeight: 500,
                             },
@@ -148,16 +148,16 @@
                 ],
 
                 temperatureChartOptions: {
-                    colors: ['#fa3e6d'], // 1: chart line
+                    colors: ['#EC6E4C'], // 1: chart line
                     markers: {
-                        colors: ['#9C27B0'],
+                        colors: ['#d14c28'],
                     },
                     grid: {
                         row: {
-                            colors: ['#9c9db0']
+                            colors: ['#f2e8e1']
                         },
                         column: {
-                            colors: ['#9c9db0']
+                            colors: ['#f2e8e1']
                         },
                         strokeDashArray: 2
                     },
@@ -167,7 +167,7 @@
                         style: {
                             fontSize: '14px',
                             fontWeight: 600,
-                            color: '#9c9db0'
+                            color: '#474747'
                         },
                     },
                     chart: {
@@ -180,14 +180,14 @@
                         title: {
                             text: 'Temperature',
                             style: {
-                                color: '#fff', // forecolor
+                                color: '#474747', // forecolor
                                 fontSize: '12px',
                                 fontWeight: 600,
                             },
                         },
                         labels: {
                             style: {
-                                colors: '#fafafa',
+                                colors: '#474747',
                                 fontSize: '12px',
                                 fontWeight: 500,
                             },
@@ -197,7 +197,7 @@
                         type: 'datetime',
                         labels: {
                             style: {
-                                colors: '#fafafa',
+                                colors: '#474747',
                                 fontSize: '12px',
                                 fontWeight: 500,
                             },

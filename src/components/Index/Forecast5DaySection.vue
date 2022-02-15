@@ -61,7 +61,7 @@
 
     &__header {
       > h2 {
-        color: $white-color;
+        color: var(--forecasts-title-color);
       }
     }
 
