@@ -1,41 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <link rel="icon" href="/favicon.ico"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta property="og:image" content="https://lh3.googleusercontent.com/SxG6v3OKszSxL7uxjSswOnwGOzfFyxac65NhZ8j09Ko14WVOH3YAEJRrwtNG6ju9F8lBJLZZgoRqyA=w2560-h1339"/>
-  <meta property="og:description" content="vue.js v3 로 리뉴얼한 날씨 웹앱"/>
-  <meta property="og:title" content="vue-weather-v3"/>
-  <title>Weather App</title>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:image"
+          content="https://lh3.googleusercontent.com/SxG6v3OKszSxL7uxjSswOnwGOzfFyxac65NhZ8j09Ko14WVOH3YAEJRrwtNG6ju9F8lBJLZZgoRqyA=w2560-h1339"/>
+    <meta property="og:description" content="vue.js v3 로 리뉴얼한 날씨 웹앱"/>
+    <meta property="og:title" content="vue-weather-v3"/>
+    <title>Weather App</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500&display=swap"
+          rel="stylesheet">
 
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
+    <style>
 
-    h1, h2, h3, h4, h5, h6, p {
-      margin: 0;
-      padding: 0;
-    }
+        :root {
+            --background: #E6DDD5;
+            --weather-background: #E5C7B5;
 
-    ul, li {
-      margin: 0;
-      padding: 0;
-    }
+            --forecasts-title-background: #E5C7B5;
+            --forecasts-background: #EEE3DB;
 
-    * {
-      box-sizing: border-box;
-      font-family: 'Noto Sans KR', sans-serif;
-      -webkit-tap-highlight-color: transparent;
-    }
-  </style>
+            --primay-font-color: #AA6C48;
+            --secondary-font-color: #474747;
+            --title-font-color: #6F6F6F;
+            --card-font-color: #FFFFFF;
+
+            --border-color: #FFFFFF;
+
+            --dropdown-bachground: #FDFEFA;
+            --dropdown-basic-font-color: #ACACAC;
+
+            --chart-line-color: #EC6E4C;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            height: 100vh;
+        }
+
+        h1, h2, h3, h4, h5, h6, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul, li {
+            margin: 0;
+            padding: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Noto Sans KR', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+    </style>
 </head>
 <body>
 <main id="app"></main>
