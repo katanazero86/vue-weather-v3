@@ -15,28 +15,14 @@
   </transition>
 </template>
 
-<script lang="ts">
-import {defineComponent, ref} from 'vue';
-import {Ref} from 'vue';
-import Drawer from '@/components/Drawer/Drawer.vue';
+<script lang="ts" setup>
+import {ref, Ref} from "vue";
+import Drawer from "@/components/Drawer/Drawer.vue";
 
-const Header = defineComponent({
-  name: 'Header',
-  components: {Drawer},
-  setup() {
-    const isOpen: Ref<boolean> = ref(false);
-    const toggleIsOpen = () => {
-      isOpen.value = !isOpen.value;
-    }
-
-    return {
-      isOpen,
-      toggleIsOpen,
-    }
-  }
-});
-
-export default Header
+const isOpen: Ref<boolean> = ref(false);
+const toggleIsOpen = () => {
+  isOpen.value = !isOpen.value;
+}
 </script>
 
 <style lang="scss" scoped>

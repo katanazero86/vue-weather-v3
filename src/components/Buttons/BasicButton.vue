@@ -9,79 +9,85 @@
               large ? 'basic-button--large' : null,
           ]"
           @click="$emit('click')">
-    {{name}}
+    {{ name }}
   </button>
 </template>
 
-<script lang="ts">
-    import {defineComponent} from 'vue';
+<script lang="ts" setup>
+interface BasicButtonPropsInterface {
+  name?: string;
+  disabled?: boolean;
+  block?: boolean;
+  small?: boolean;
+  large?: boolean;
+  outline?: boolean;
+}
 
-    const BasicButton = defineComponent({
-        name: 'BasicButton',
-        props: {
-            name: {type: String, default: ''},
-            disabled: {type: Boolean, default: false},
-            block: {type: Boolean, default: false},
-            small: {type: Boolean, default: false},
-            large: {type: Boolean, default: false},
-            outline: {type: Boolean, default: false},
-        },
-        emits: ['click'],
-    });
-    export default BasicButton
+const props = withDefaults(defineProps<BasicButtonPropsInterface>(), {
+  name: '',
+  disabled: false,
+  block: false,
+  small: false,
+  large: false,
+  outline: false,
+});
+const emit = defineEmits([
+  'click',
+]);
+
 </script>
 
 <style lang="scss" scoped>
-  @import "../../assets/scss/common/variables";
+@import "../../assets/scss/common/variables";
 
-  .basic-button {
+.basic-button {
 
-    display: inline-block;
-    outline: none;
-    padding: 12px 16px;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 14px;
-    border: 1px solid $primary-color;
-    background-color: $primary-color;
-    color: #ffffff;
+  display: inline-block;
+  outline: none;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  border: 1px solid $primary-color;
+  background-color: $primary-color;
+  color: #ffffff;
 
 
-    &--block {
-      display: block;
-      width: 100%;
-    }
-
-    &--outline {
-      border-color: $primary-color;
-      background-color: #ffffff;
-      color: $primary-color;
-    }
-
-    &--small {
-      padding: 8px 12px;
-      font-size: 12px;
-    }
-
-    &--large {
-      padding: 16px 20px;
-      font-size: 18px;
-    }
-
-    &--disabled {
-      border-color: #a6a6a6;
-      background-color: #a6a6a6;
-      color: #ffffff;
-      pointer-events: none;
-    }
-
+  &--block {
+    display: block;
+    width: 100%;
   }
 
-  .basic-button--disabled.basic-button--outline {
+  &--outline {
+    border-color: $primary-color;
     background-color: #ffffff;
-    color: #a6a6a6;
-    border-color: #a6a6a6;
+    color: $primary-color;
   }
+
+  &--small {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  &--large {
+    padding: 16px 20px;
+    font-size: 18px;
+  }
+
+  &--disabled {
+    border-color: #a6a6a6;
+    background-color: #a6a6a6;
+    color: #ffffff;
+    pointer-events: none;
+  }
+
+}
+
+.basic-button--disabled.basic-button--outline {
+  background-color: #ffffff;
+  color: #a6a6a6;
+  border-color: #a6a6a6;
+}
 
 
 </style>

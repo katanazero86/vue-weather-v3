@@ -4,7 +4,7 @@
     <Dropdown class="py-3" :items="cityList" label="원하시는 도시를 선택해주세요 :)" :selectedItem="selectedCity"
               @select="handleDropdownSelect"/>
   </div>
-  <AlertModal v-if="isOpen" :title="alertModalTitle" :content="alertModalContent" @close="closeAlertModal"/>
+  <AlterModal v-if="isOpen" :title="alertModalTitle" :content="alertModalContent" @close="closeAlertModal"/>
 </template>
 
 <script lang="ts">

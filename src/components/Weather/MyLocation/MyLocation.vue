@@ -24,11 +24,10 @@ const MyLocation = defineComponent({
         getCurrentPosition().then(position => {
           emit('geolocationPosition', position);
         }).catch(error => {
-          emit('handleError', {title: '알림', content: handleGeolocationError(error)})
-          alertModalTitle.value = '알림';
+          emit('handleError', {title: '알림', content: handleGeolocationError(error)});
         });
       } else {
-        emit('handleError', {title: '알림', content: '해당 기능을 지원하지 않아 사용하실 수 없습니다.'})
+        emit('handleError', {title: '알림', content: '해당 기능을 지원하지 않아 사용하실 수 없습니다.'});
       }
     }
 

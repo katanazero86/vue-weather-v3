@@ -17,7 +17,6 @@
 import {defineComponent, ref, computed, onUnmounted} from 'vue';
 import {Ref} from 'vue';
 import {useStore} from 'vuex';
-import MyLocationSection from '@/components/Index/MyLocationSection.vue';
 import Dropdown from '@/components/Dropdown/Dropdown.vue';
 import CurrentWeather from '@/components/Index/CurrentWeather.vue';
 import Forecast5DaySection from '@/components/Index/Forecast5DaySection.vue';
