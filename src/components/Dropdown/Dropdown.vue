@@ -47,8 +47,8 @@ const props = withDefaults(defineProps<DropdownPropsInterface>(), {
 });
 const emit = defineEmits(['select']);
 
-const dropdown: Ref<HTMLElement> = ref(null);
-const isOpenDropdown: Ref<boolean> = ref(false);
+const dropdown = ref<HTMLElement>(null);
+const isOpenDropdown = ref<boolean>(false);
 const toggleDropdown: (e: Event) => void = e => {
   e.stopPropagation();
   isOpenDropdown.value = !isOpenDropdown.value;

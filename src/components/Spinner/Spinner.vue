@@ -7,70 +7,66 @@
   </transition>
 </template>
 
-<script lang="ts">
-    import {defineComponent, computed} from 'vue'
-    import {useStore} from 'vuex';
+<script lang="ts" setup>
+import {useStore} from "vuex";
+import {computed} from "vue";
 
-    const Spinner = defineComponent({
-        name: 'Spinner',
-        props: {
-            small: {type: Boolean, default: false},
-            large: {type: Boolean, default: false},
-        },
-        setup() {
-            const store = useStore();
-            const isLoading = computed(() => store.state.isLoading);
+interface SpinnerPropsInterface {
+  small?: boolean;
+  large?: boolean;
+}
 
-            return {
-                isLoading,
-            }
-        },
-    });
+const props = withDefaults(defineProps<SpinnerPropsInterface>(), {
+  small: false,
+  large: false,
+});
 
-    export default Spinner
+const store = useStore();
+const isLoading = computed(() => store.state.isLoading);
+
 </script>
 
 <style lang="scss" scoped>
 
-  @import "../../assets/scss/common/mixins";
+@import "../../assets/scss/common/mixins";
 
-  .spinner {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 10000;
-    @include overlay-background();
+.spinner {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  @include overlay-background();
 
-    &__circle {
-      border: 5px solid #f3f3f3;
-      animation: spin 1s linear infinite;
-      border-top: 5px solid #555;
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
+  &__circle {
+    border: 5px solid #f3f3f3;
+    animation: spin 1s linear infinite;
+    border-top: 5px solid #555;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
 
-      &--small {
-        width: 35px;
-        height: 35px;
-      }
-
-      &--large {
-        width: 65px;
-        height: 65px;
-      }
-
+    &--small {
+      width: 35px;
+      height: 35px;
     }
+
+    &--large {
+      width: 65px;
+      height: 65px;
+    }
+
   }
+}
 
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 </style>

@@ -49,7 +49,7 @@ export default MyLocation
 
   &__body {
     letter-spacing: -0.3px;
-    color: var(--my-location-color);
+    color: var(--default-color);
     font-weight: 400;
     font-size: 14px;
   }

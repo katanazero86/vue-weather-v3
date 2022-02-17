@@ -30,7 +30,7 @@ const handleLinkClick = (targetUrl: string) => {
   letter-spacing: -0.5px;
   font-weight: 500;
   background-color: var(--footer-background);
-  color: var(--footer-color);
+  color: var(--default-color);
 
   &__description {
   }

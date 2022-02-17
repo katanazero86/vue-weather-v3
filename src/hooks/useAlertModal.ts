@@ -1,5 +1,4 @@
-import {ref} from 'vue';
-import {Ref} from 'vue';
+import {ref, Ref} from 'vue';
 
 export interface UseAlertModalInterface {
     isOpen: Ref<boolean>,

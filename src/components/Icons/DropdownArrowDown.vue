@@ -7,20 +7,20 @@
   </div>
 </template>
 
-<script lang="ts">
-    import {defineComponent} from 'vue';
+<script lang="ts" setup>
+interface DropdownArrowDownPropsInterface {
+  width?: number | string;
+  height?: number | string;
+  color?: string;
+}
 
-    const DropdownArrowDown = defineComponent({
-        name: 'DropdownArrowDown',
-        props: {
-            width: {type: Number, default: 24},
-            height: {type: Number, default: 24},
-            color: {type: String, default: '#000000'},
-        },
-        emits: ['click'],
-    });
+const props = withDefaults(defineProps<DropdownArrowDownPropsInterface>(), {
+  width: 24,
+  height: 24,
+  color: '#000000'
+});
 
-    export default DropdownArrowDown
+const emit = defineEmits(['click']);
 </script>
 
 <style lang="scss" src="./Icon.scss"/>

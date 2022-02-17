@@ -10,21 +10,20 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
+interface CloseIconPropsInterface {
+  width?: number | string;
+  height?: number | string;
+  color?: string;
+}
 
-    import {defineComponent} from 'vue';
+const props = withDefaults(defineProps<CloseIconPropsInterface>(), {
+  width: 15,
+  height: 15,
+  color: '#4A4A4A'
+});
 
-    const CloseIcon = defineComponent({
-        name: 'CloseIcon',
-        props: {
-            width: {type: Number, default: 15},
-            height: {type: Number, default: 15},
-            color: {type: String, default: '#4A4A4A'},
-        },
-        emits: ['click'],
-    });
-
-    export default CloseIcon
+const emit = defineEmits(['click']);
 </script>
 
 <style lang="scss" src="./Icon.scss"/>

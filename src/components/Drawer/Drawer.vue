@@ -69,17 +69,17 @@ const handleOverlayClick = () => {
     overflow: hidden;
 
     .drawer__nav {
-      background-color: $dark-color;
+      background-color: var(--drawer-background);
       width: 280px;
       height: 100%;
       overflow: auto;
 
       .item {
-        border-bottom: 1px solid $white-color;
+        border-bottom: 1px solid var(--border-color);
         cursor: pointer;
 
         > span {
-          color: $white-color;
+          color: var(--default-color);
           font-size: 16px;
           font-weight: 400;
         }

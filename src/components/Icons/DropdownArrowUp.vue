@@ -7,20 +7,20 @@
   </div>
 </template>
 
-<script lang="ts">
-    import {defineComponent} from 'vue';
+<script lang="ts" setup>
+interface DropdownArrowUpPropsInterface {
+  width?: number | string;
+  height?: number | string;
+  color?: string;
+}
 
-    const DropdownArrowUp = defineComponent({
-        name: 'DropdownArrowUp',
-        props: {
-            width: {type: Number, default: 24},
-            height: {type: Number, default: 24},
-            color: {type: String, default: '#000000'},
-        },
-        emits: ['click'],
-    });
+const props = withDefaults(defineProps<DropdownArrowUpPropsInterface>(), {
+  width: 24,
+  height: 24,
+  color: '#000000'
+});
 
-    export default DropdownArrowUp
+const emit = defineEmits(['click']);
 </script>
 
 <style lang="scss" src="./Icon.scss"/>

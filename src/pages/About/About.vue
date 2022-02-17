@@ -19,14 +19,8 @@
   </div>
 </template>
 
-<script lang="ts">
-    import {defineComponent} from 'vue';
+<script lang="ts" setup>
 
-    const About = defineComponent({
-        name: 'About',
-    });
-
-    export default About
 </script>
 
 <style lang="scss" scoped>
@@ -34,11 +28,11 @@
 
   .about {
     min-height: 100%;
-    background-color: $dark-color;
+    background-color: var(--background);
     padding: 24px 10px;
 
     &__body {
-      color: $white-color;
+      color: var(--default-color);
       max-width: 600px;
 
       .hello {

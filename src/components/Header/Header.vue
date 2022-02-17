@@ -1,8 +1,6 @@
 <template>
   <header class="header row align-items-center justify-contents-between pa-5">
-    <div class="header__title">
-      <p>vue-weather-v3</p>
-    </div>
+    <p class="header__title">vue-weather-v3</p>
     <figure class="header__menu-icon" @click="toggleIsOpen">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
         <path d="M0 0h24v24H0V0z" fill="none"/>
@@ -33,21 +31,22 @@ const toggleIsOpen = () => {
 
   position: relative;
   background-color: var(--header-background);
-  color: var(--header-color);
+  color: var(--default-color);
   height: 60px;
 
   &__title {
-    > p {
-      font-size: 18px;
-      letter-spacing: -0.5px;
-      font-weight: 500;
-    }
+    font-size: 18px;
+    letter-spacing: -0.5px;
+    font-weight: 500;
+    height: 28px;
   }
 
   &__menu-icon {
     margin: 0;
     padding: 0;
-    color: var(--header-color);
+    color: var(--default-color);
+    width: 28px;
+    height: 28px;
 
     > svg {
       cursor: pointer;
