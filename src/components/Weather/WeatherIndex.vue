@@ -5,6 +5,7 @@
               @select="handleDropdownSelect"/>
     <CurrentWeather :currentWeather="currentWeather" v-if="currentWeather" />
     <Forecast5Days :forecast5Days="forecast5Days" v-if="forecast5Days" />
+    <ForecastChart :forecast5Days="forecast5Days" v-if="forecast5Days" />
   </div>
   <AlterModal v-if="isOpen" :title="alertModalTitle" :content="alertModalContent" @close="closeAlertModal"/>
 </template>
@@ -14,6 +15,7 @@ import {computed, defineComponent, ref, Ref} from "vue";
 import MyLocation from "@/components/Weather/MyLocation/MyLocation.vue";
 import CurrentWeather from "@/components/Weather/CurrentWeather/CurrentWeather.vue";
 import Forecast5Days from "@/components/Weather/Forecast5Days/Forecast5Days.vue";
+import ForecastChart from "@/components/Weather/Forecast5Days/ForecastChart/ForecastChart.vue";
 import AlterModal from "@/components/Modal/AlertModal.vue";
 import useAlertModal, {UseAlertModalInterface} from '@/hooks/useAlertModal';
 import Dropdown from "@/components/Dropdown/Dropdown.vue";
@@ -25,7 +27,7 @@ import {NAMESPACE, actionTypes} from '@/store/modules/weatherModule/weatherModul
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 const WeatherIndex = defineComponent({
-  components: {CurrentWeather, Forecast5Days, Dropdown, AlterModal, MyLocation},
+  components: {CurrentWeather, Forecast5Days, ForecastChart, Dropdown, AlterModal, MyLocation},
   setup() {
 
     const store = useStore();

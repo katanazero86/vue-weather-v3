@@ -30,12 +30,12 @@
     const ForecastChart = defineComponent({
         name: 'ChartSection',
         props: {
-            forecast5Day: {type: Object, default: {}},
+            forecast5Days: {type: Object, default: {}},
         },
         computed: {
             renderWindChart() {
-                if (this.forecast5Day && this.forecast5Day?.list) {
-                    this.windSeries[0].data = this.forecast5Day.list.map(data => {
+                if (this.forecast5Days && this.forecast5Days?.list) {
+                    this.windSeries[0].data = this.forecast5Days.list.map(data => {
                         return [
                             `${convertUnixTimeStampIntoDate(data.dt)}`,
                             `${data.wind.speed}`
@@ -46,8 +46,8 @@
 
             },
             renderTemperatureChart() {
-                if (this.forecast5Day && this.forecast5Day?.list) {
-                    this.temperatureSeries[0].data = this.forecast5Day.list.map(data => {
+                if (this.forecast5Days && this.forecast5Days?.list) {
+                    this.temperatureSeries[0].data = this.forecast5Days.list.map(data => {
                         return [
                             `${convertUnixTimeStampIntoDate(data.dt)}`,
                             `${(data.main.temp - 273.15).toFixed(1)}`
