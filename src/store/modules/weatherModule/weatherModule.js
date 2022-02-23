@@ -5,15 +5,15 @@ export const weatherModule = {
     state() {
         return {
             currentWeather: null,
-            forecast5Day: null,
+            forecast5Days: null,
         };
     },
     actions: {
         currentWeatherAction({commit}, payload) {
             commit(mutationTypes.CURRENT_WEATHER, payload);
         },
-        forecast5DayAction({commit}, payload) {
-            commit(mutationTypes.FORECAST_5_DAY, payload);
+        forecast5DaysAction({commit}, payload) {
+            commit(mutationTypes.FORECAST_5_DAYS, payload);
         },
         initStatesAction({commit}) {
             commit(mutationTypes.INIT_STATES);
@@ -23,12 +23,12 @@ export const weatherModule = {
         currentWeather(state, payload) {
             state.currentWeather = payload;
         },
-        forecast5Day(state, payload) {
-            state.forecast5Day = payload;
+        forecast5Days(state, payload) {
+            state.forecast5Days = payload;
         },
         initStates(state) {
             state.currentWeather = null;
-            state.forecast5Day = null;
+            state.forecast5Days = null;
         }
     },
     getters: {
@@ -36,7 +36,7 @@ export const weatherModule = {
             return state.currentWeather;
         },
         get5DayForecast(state) {
-            return state.forecast5Day;
+            return state.forecast5Days;
         },
     }
 }

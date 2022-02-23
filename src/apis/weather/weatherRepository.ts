@@ -1,25 +1,25 @@
 // https://openweathermap.org/current
 // https://openweathermap.org/forecast5
 
-interface byCityNameInterface {
-    q: string,
-    appId: string,
+interface ByCityNameInterface {
+    q: string;
+    appId: string;
 }
 
-interface byGeographicCoordinates {
-    lat: string,
-    lon: string,
-    appId: string,
+interface ByGeographicCoordinates {
+    lat: string;
+    lon: string;
+    appId: string;
 }
 
-interface weatherRepositoryInterface {
-    findCurrentWeatherByCity({q, appId}: byCityNameInterface): Promise<any>,
-    findCurrentWeatherByGeographicCoordinates({lat, lon, appId}: byGeographicCoordinates): Promise<any>,
-    findForecast5DayByCity({q, appId}: byCityNameInterface): Promise<any>,
-    findForecast5DayByGeographicCoordinates({lat, lon, appId}: byGeographicCoordinates): Promise<any>
+interface WeatherRepositoryInterface {
+    findCurrentWeatherByCity({q, appId}: ByCityNameInterface): Promise<any>;
+    findCurrentWeatherByGeographicCoordinates({lat, lon, appId}: ByGeographicCoordinates): Promise<any>;
+    findForecast5DaysByCity({q, appId}: ByCityNameInterface): Promise<any>;
+    findForecast5DaysByGeographicCoordinates({lat, lon, appId}: ByGeographicCoordinates): Promise<any>;
 }
 
-export default (api, axios): weatherRepositoryInterface => {
+export default (api, axios): WeatherRepositoryInterface => {
 
     return {
         /**
@@ -28,7 +28,7 @@ export default (api, axios): weatherRepositoryInterface => {
          * @param q
          * @param appId
          */
-        async findCurrentWeatherByCity({q, appId}: byCityNameInterface): Promise<any> {
+        async findCurrentWeatherByCity({q, appId}): Promise<any> {
             return api.get(`/weather?q=${q}&appid=${appId}`)
         },
 
@@ -38,7 +38,7 @@ export default (api, axios): weatherRepositoryInterface => {
          * @param lon
          * @param appId
          */
-        async findCurrentWeatherByGeographicCoordinates({lat, lon, appId}: byGeographicCoordinates): Promise<any> {
+        async findCurrentWeatherByGeographicCoordinates({lat, lon, appId}): Promise<any> {
             return api.get(`/weather?lat=${lat}&lon=${lon}&appid=${appId}`)
         },
 
@@ -48,7 +48,7 @@ export default (api, axios): weatherRepositoryInterface => {
          * @param q
          * @param appId
          */
-        async findForecast5DayByCity({q, appId}: byCityNameInterface): Promise<any> {
+        async findForecast5DaysByCity({q, appId}): Promise<any> {
             return api.get(`/forecast?q=${q}&appid=${appId}`)
         },
 
@@ -58,7 +58,7 @@ export default (api, axios): weatherRepositoryInterface => {
          * @param lon
          * @param appId
          */
-        async findForecast5DayByGeographicCoordinates({lat, lon, appId}: byGeographicCoordinates): Promise<any> {
+        async findForecast5DaysByGeographicCoordinates({lat, lon, appId}): Promise<any> {
             return api.get(`/forecast?lat=${lat}&lon=${lon}&appid=${appId}`)
         }
     };
