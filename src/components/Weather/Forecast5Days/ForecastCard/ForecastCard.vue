@@ -31,6 +31,7 @@
 </template>
 
 <script lang="ts">
+// TODO: setup 구문 리팩토링
 import {defineComponent} from 'vue';
 
 const OPEN_WEATHER_ICONS_BASE_URL = import.meta.env.VITE_OPEN_WEATHER_ICONS_BASE_URL;

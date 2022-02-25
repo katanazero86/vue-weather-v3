@@ -35,6 +35,7 @@ export default function useApi() {
             return responseData;
         } else {
             // status 가 200 이 아닌 경우 handling
+            console.error('error..');
         }
 
     }
