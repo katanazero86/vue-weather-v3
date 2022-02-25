@@ -35,7 +35,6 @@ const ForecastChart = defineComponent({
   computed: {
     renderWindChart() {
       if (this.forecast5Days && this.forecast5Days?.list) {
-        console.log(this.forecast5Days);
         this.windSeries[0].data = this.forecast5Days.list.map(data => {
           return [
             `${data.dt_txt}`,
