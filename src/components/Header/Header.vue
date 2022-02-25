@@ -1,12 +1,21 @@
 <template>
   <header class="header row align-items-center justify-contents-between pa-5">
     <p class="header__title">vue-weather-v3</p>
-    <figure class="header__menu-icon" @click="toggleIsOpen">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M0 0h24v24H0V0z" fill="none"/>
-        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
-      </svg>
-    </figure>
+    <div class="header__menu-icon">
+      <button type="button" @click="toggleTheme">
+        <div>
+          <Transition name="toggle">
+            <LightThemeIcon v-if="theme === 'light'"/>
+            <DarkThemeIcon v-else/>
+          </Transition>
+        </div>
+      </button>
+      <button type="button" @click="toggleIsOpen">
+        <div>
+          <MenuIcon/>
+        </div>
+      </button>
+    </div>
   </header>
   <transition name="fade">
     <Drawer v-if="isOpen" :isOpen="isOpen" @toggleIsOpen="toggleIsOpen"/>
@@ -14,13 +23,31 @@
 </template>
 
 <script lang="ts" setup>
-import {ref, Ref} from "vue";
+import {ref, Ref, onMounted} from "vue";
 import Drawer from "@/components/Drawer/Drawer.vue";
+import LightThemeIcon from "@/components/Icons/LightThemeIcon.vue";
+import MenuIcon from "@/components/Icons/MenuIcon.vue";
+import DarkThemeIcon from "@/components/Icons/DarkThemeIcon.vue";
 
 const isOpen: Ref<boolean> = ref(false);
 const toggleIsOpen = () => {
   isOpen.value = !isOpen.value;
-}
+};
+
+onMounted(() => {
+  const colorTheme = document.documentElement.getAttribute('color-theme');
+  theme.value = colorTheme as 'light' | 'dark';
+});
+
+const theme: Ref<'light' | 'dark'> = ref('light');
+const toggleTheme = () => {
+  if (theme.value === 'light') {
+    theme.value = 'dark';
+  } else {
+    theme.value = 'light';
+  }
+};
+
 </script>
 
 <style lang="scss" scoped>
@@ -44,15 +71,42 @@ const toggleIsOpen = () => {
   &__menu-icon {
     margin: 0;
     padding: 0;
-    color: var(--default-color);
-    width: 28px;
-    height: 28px;
+    display: flex;
+    align-items: center;
 
-    > svg {
+    > button {
       cursor: pointer;
-      width: 28px;
-      height: 28px;
+      border: none;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      margin-right: 0.25rem;
+      position: relative;
+      background: none;
+      color: var(--default-color);
+
+      &:first-child {
+        margin-right: 14px;
+      }
+
+      div {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
     }
+
   }
 }
+
+.toggle-enter-active {
+  transition: all 0.3s ease-in-out;
+}
+
+.toggle-enter-from, .toggle-leave-from {
+  transform: scale(0) rotate(180deg);
+  opacity: 0;
+}
+
 </style>

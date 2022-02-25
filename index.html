@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" color-theme="light">
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="/favicon.ico"/>
@@ -17,7 +17,37 @@
 
     <style>
 
-        :root {
+        :root[color-theme='light'] {
+            --background: #E6DDD5;
+            --weather-background: #E5C7B5;
+            --header-background: #E5C7B5;
+            --footer-background: #E5C7B5;
+            --drawer-background: #E5C7B5;
+
+            --default-color: #474747;
+
+            --forecasts-header-background: #E5C7B5;
+            --forecasts-header-color: #AA6C48;
+            --forecasts-background: #f2e8e1;
+            --forecasts-title-color: #474747;
+
+            --current-title-color: #474747;
+            --current-status-color: #474747;
+            --current-item-color: #f5f5f5;
+            --current-value-color: #AA6C48;
+
+            --gray-font-color: #6F6F6F;
+            --white-font-color: #FFFFFF;
+
+            --border-color: #fafafa;
+
+            --dropdown-bachground: #FDFEFA;
+            --dropdown-basic-font-color: #ACACAC;
+
+            --chart-line-color: #EC6E4C;
+        }
+
+        :root[color-theme='dark'] {
             --background: #E6DDD5;
             --weather-background: #E5C7B5;
             --header-background: #E5C7B5;
