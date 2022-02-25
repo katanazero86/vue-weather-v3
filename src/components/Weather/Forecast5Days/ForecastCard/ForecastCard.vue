@@ -75,7 +75,7 @@ export default ForecastCard
   }
 
   table {
-    background: var(--forecasts-background);
+    background-color: var(--forecasts-background);
     height: 100%;
     width: 100%;
     font-size: 13.5px;
@@ -83,7 +83,7 @@ export default ForecastCard
     border-collapse: collapse;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
-    color: #303030;
+    color: var(--forecasts-color);
 
     tr {
       width: 100%;

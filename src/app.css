@@ -7,3 +7,7 @@
 .fade-leave-to {
   opacity: 0;
 }
+
+.apexcharts-xaxis-label {
+  font-weight: 500; !important;
+}
