@@ -12,14 +12,14 @@ interface ByGeographicCoordinates {
     appId: string;
 }
 
-interface WeatherRepositoryInterface {
+interface WeatherApisInterface {
     findCurrentWeatherByCity({q, appId}: ByCityNameInterface): Promise<any>;
     findCurrentWeatherByGeographicCoordinates({lat, lon, appId}: ByGeographicCoordinates): Promise<any>;
     findForecast5DaysByCity({q, appId}: ByCityNameInterface): Promise<any>;
     findForecast5DaysByGeographicCoordinates({lat, lon, appId}: ByGeographicCoordinates): Promise<any>;
 }
 
-export default (api, axios): WeatherRepositoryInterface => {
+export default (api, axios): WeatherApisInterface => {
 
     return {
         /**

@@ -8,8 +8,8 @@
 </template>
 
 <script lang="ts" setup>
-import {useStore} from "vuex";
 import {computed} from "vue";
+import {useIndexStore} from "@/stores";
 
 interface SpinnerPropsInterface {
   small?: boolean;
@@ -21,8 +21,10 @@ const props = withDefaults(defineProps<SpinnerPropsInterface>(), {
   large: false,
 });
 
-const store = useStore();
-const isLoading = computed(() => store.state.isLoading);
+const indexStore = useIndexStore();
+const isLoading = computed(() => {
+  return indexStore.getIsLoading;
+})
 
 </script>
 

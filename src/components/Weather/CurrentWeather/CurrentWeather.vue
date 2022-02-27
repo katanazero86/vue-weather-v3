@@ -47,9 +47,7 @@
 
 <script lang="ts" setup>
 import {convertUnixTimestampIntoDateFormatting} from '@/utils/dateUtils';
-
 const OPEN_WEATHER_ICONS_BASE_URL = import.meta.env.VITE_OPEN_WEATHER_ICONS_BASE_URL;
-
 interface CurrentWeatherInterface {
   currentWeather?: null | {
     coord: {
@@ -101,15 +99,15 @@ const props = withDefaults(defineProps<CurrentWeatherInterface>(), {
   currentWeather: null
 });
 
-const getIconUrl = () => {
+const getIconUrl = (): string => {
   const weatherIcon = props.currentWeather?.weather[0].icon;
   if (weatherIcon) return `${OPEN_WEATHER_ICONS_BASE_URL}/${weatherIcon}@2x.png`;
   return `${OPEN_WEATHER_ICONS_BASE_URL}/01d@2x.png`;
 };
 
-const getTemperature = () => {
+const getTemperature = (): number => {
   const temp = props.currentWeather?.main.temp;
-  if (temp !== undefined) return (props.currentWeather?.main.temp - 273.15).toFixed(1);
+  if (temp !== undefined) return parseFloat((props.currentWeather?.main.temp - 273.15).toFixed(1));
   return 0;
 };
 

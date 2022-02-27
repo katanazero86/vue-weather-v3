@@ -1,7 +1,7 @@
 <template>
   <div class="forecast-card">
     <div class="forecast-card__header pa-6">
-      {{ items[0].dt_txt.split(' ')[0] }}
+      {{ items[0]?.dt_txt.split(' ')[0] }}
     </div>
     <div class="forecast-card__body">
       <table>
@@ -14,9 +14,9 @@
                 <span> {{ item.weather[0].description }}</span>
               </div>
               <div class="row align-items-center col-6">
-                <img :src="`${OPEN_WEATHER_ICONS_BASE_URL}/${item.weather[0].icon}@2x.png`" width="50"
-                     height="50" loading="lazy" />
-                <span>{{ (item.main.temp - 273.15).toFixed(1) }} °C</span>
+                <img :src="getIconUrl(item)" width="50"
+                     height="50" loading="lazy"/>
+                <span>{{ getTemperature(item) }} °C</span>
               </div>
             </div>
           </td>
@@ -30,25 +30,67 @@
   </div>
 </template>
 
-<script lang="ts">
-// TODO: setup 구문 리팩토링
-import {defineComponent} from 'vue';
-
+<script lang="ts" setup>
 const OPEN_WEATHER_ICONS_BASE_URL = import.meta.env.VITE_OPEN_WEATHER_ICONS_BASE_URL;
-
-const ForecastCard = defineComponent({
-  name: 'ForecastCard',
-  props: {
-    items: {type: Array, default: [],}
-  },
-  setup() {
-    return {
-      OPEN_WEATHER_ICONS_BASE_URL
+interface ForecastCardPropsInterface {
+  items?: {
+    dt: number;
+    main: {
+      temp: number;
+      feels_like: number;
+      temp_min: number;
+      temp_max: number;
+      pressure: number;
+      sea_level: number;
+      grnd_level: number;
+      humidity: number;
+      temp_kf: number;
+    };
+    weather: {
+      id: number | string;
+      main: string;
+      description: string;
+      icon: string;
+    }[];
+    clouds: {
+      all: number;
+    };
+    wind: {
+      speed: number;
+      deg: number;
+      gust: number;
+    };
+    visibility: number;
+    pop: number;
+    rain: {
+      '3h'?: number;
+    };
+    snow: {
+      '3h'?: number;
     }
-  }
+    sys: {
+      pod: string;
+    };
+    dt_txt: string;
+  }[];
+}
+
+const props = withDefaults(defineProps<ForecastCardPropsInterface>(), {
+  items: () => [],
 });
 
-export default ForecastCard
+const getIconUrl = (targetItem): string => {
+  const weatherIcon = targetItem?.weather[0].icon;
+  if (weatherIcon) return `${OPEN_WEATHER_ICONS_BASE_URL}/${weatherIcon}@2x.png`;
+  return `${OPEN_WEATHER_ICONS_BASE_URL}/01d@2x.png`;
+};
+
+const getTemperature = (targetItem): number => {
+  const temp = targetItem?.main.temp;
+  if (temp !== undefined) return parseFloat((targetItem?.main.temp - 273.15).toFixed(1));
+  return 0;
+};
+
 </script>
 
 <style lang="scss" scoped>

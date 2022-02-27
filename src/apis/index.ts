@@ -1,8 +1,8 @@
-import {api, axios} from '../utils/axiosUtils';
+import {api, axios} from '../utils/axios-utils';
 
 // apis
-import weatherRepository from './weather/weatherRepository';
+import weatherApis from './weather/weather-apis';
 
 export default {
-    weatherRepository: weatherRepository(api, axios)
+    weatherApis: weatherApis(api, axios)
 }
