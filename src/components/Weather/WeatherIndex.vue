@@ -19,7 +19,7 @@ import ForecastChart from "@/components/Weather/Forecast5Days/ForecastChart/Fore
 import AlterModal from "@/components/Modal/AlertModal.vue";
 import useAlertModal from '@/hooks/useAlertModal';
 import Dropdown from "@/components/Dropdown/Dropdown.vue";
-import cityList from '@/assets/js/city.list.kr';
+import cityList from '@/assets/js/city-list-kr';
 import {useWeatherStore} from "@/stores/weather-store";
 import useApi from "@/hooks/useApi";
 import apis from "@/apis";

@@ -7,36 +7,26 @@
   </div>
 </template>
 
-<script>
-import {defineComponent} from 'vue';
+<script lang="ts" setup>
 import MyLocationIcon from '@/components/Icons/MyLocationIcon.vue';
-import {checkGeolocationSupport, getCurrentPosition, handleGeolocationError} from '@/utils/geolocation-utils';
+import {geolocationUtils} from '@/utils/geolocation-utils';
 
-const MyLocation = defineComponent({
-  name: 'MyLocation',
-  components: {
-    MyLocationIcon,
-  },
-  emits: ['handleError', 'geolocationPosition'],
-  setup(props, {emit}) {
-    const handleMyLocationIconClick = () => {
-      if (checkGeolocationSupport()) {
-        getCurrentPosition().then(position => {
-          emit('geolocationPosition', position);
-        }).catch(error => {
-          emit('handleError', {title: '알림', content: handleGeolocationError(error)});
-        });
-      } else {
-        emit('handleError', {title: '알림', content: '해당 기능을 지원하지 않아 사용하실 수 없습니다.'});
-      }
+const emit = defineEmits(['handleError', 'geolocationPosition']);
+
+const handleMyLocationIconClick = async () => {
+  if (geolocationUtils.checkGeolocationSupport()) {
+    try {
+      const resultPosition = await geolocationUtils.getCurrentPosition();
+      emit('geolocationPosition', resultPosition);
+    } catch (e) {
+      console.error(e);
+      emit('handleError', {title: '알림', content: geolocationUtils.handleGeolocationError(e)});
     }
 
-    return {
-      handleMyLocationIconClick,
-    }
-  },
-});
-export default MyLocation
+  } else {
+    emit('handleError', {title: '알림', content: '해당 기능을 지원하지 않아 사용하실 수 없습니다.'});
+  }
+}
 </script>
 
 <style lang="scss" scoped>

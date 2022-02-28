@@ -4,11 +4,12 @@ export default function useApi() {
     const indexStore = useIndexStore();
 
     // fetch data
-    const runApi = async (targetApi, apiParams) => {
+    const runApi = async (targetApi, apiParams): Promise<object> => {
         indexStore.onIsLoadingAction();
         const apiResult = await targetApi(apiParams).catch(error => {
             // api error handling
             console.log(error.response.status, error.response.data?.message);
+            return null;
         }).finally(() => {
             indexStore.offIsLoadingAction();
         });
