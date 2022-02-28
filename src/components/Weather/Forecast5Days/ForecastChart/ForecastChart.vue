@@ -25,7 +25,6 @@
 
 <script lang="ts">
 import {defineComponent} from 'vue';
-import {convertUnixTimeStampIntoDate} from "@/utils/dateUtils";
 
 const ForecastChart = defineComponent({
   name: 'ChartSection',
@@ -36,10 +35,7 @@ const ForecastChart = defineComponent({
     renderWindChart() {
       if (this.forecast5Days && this.forecast5Days?.list) {
         this.windSeries[0].data = this.forecast5Days.list.map(data => {
-          return [
-            `${data.dt_txt}`,
-            `${data.wind.speed}`
-          ]
+          return {x: `${data.dt_txt}`, y: `${data.wind.speed}`};
         });
       }
       return this.windSeries;
@@ -48,10 +44,7 @@ const ForecastChart = defineComponent({
     renderTemperatureChart() {
       if (this.forecast5Days && this.forecast5Days?.list) {
         this.temperatureSeries[0].data = this.forecast5Days.list.map(data => {
-          return [
-            `${convertUnixTimeStampIntoDate(data.dt)}`,
-            `${(data.main.temp - 273.15).toFixed(1)}`
-          ]
+          return {x: `${data.dt_txt}`, y: `${(data.main.temp - 273.15).toFixed(1)}`};
         });
       }
       return this.temperatureSeries;
@@ -102,13 +95,15 @@ const ForecastChart = defineComponent({
           },
         },
         xaxis: {
-          type: 'datetime',
           labels: {
             style: {
               colors: 'var(--chart-xaxis-color)',
               fontSize: '12px',
             },
-            format: 'MM-dd'
+            formatter: function (value) {
+              if (value !== undefined) return value.substring(0, value.length - 3);
+              return value;
+            }
           },
           axisBorder: {
             show: false,
@@ -177,13 +172,15 @@ const ForecastChart = defineComponent({
           },
         },
         xaxis: {
-          type: 'datetime',
           labels: {
             style: {
               colors: 'var(--chart-xaxis-color)',
               fontSize: '12px',
             },
-            format: 'MM-dd'
+            formatter: function (value) {
+              if (value !== undefined) return value.substring(0, value.length - 3);
+              return value;
+            }
           },
           axisBorder: {
             show: false,

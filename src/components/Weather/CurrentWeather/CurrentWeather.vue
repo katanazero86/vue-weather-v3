@@ -31,11 +31,11 @@
       </div>
       <div class="weather-item">
         <p class="weather-item__title">일출(Sunrise)</p>
-        <p class="weather-item__value">{{ convertUnixTimestampIntoDateFormatting(currentWeather.sys.sunrise) }}</p>
+        <p class="weather-item__value">{{ dateUtils.convertUnixTimestampIntoDateFormatting(currentWeather.sys.sunrise) }}</p>
       </div>
       <div class="weather-item">
         <p class="weather-item__title">일몰(Sunset)</p>
-        <p class="weather-item__value">{{ convertUnixTimestampIntoDateFormatting(currentWeather.sys.sunset) }}</p>
+        <p class="weather-item__value">{{ dateUtils.convertUnixTimestampIntoDateFormatting(currentWeather.sys.sunset) }}</p>
       </div>
       <div class="weather-item">
         <p class="weather-item__title">지리 좌표(Geo coords)</p>
@@ -46,7 +46,7 @@
 </template>
 
 <script lang="ts" setup>
-import {convertUnixTimestampIntoDateFormatting} from '@/utils/dateUtils';
+import {dateUtils} from '@/utils/date-utils';
 const OPEN_WEATHER_ICONS_BASE_URL = import.meta.env.VITE_OPEN_WEATHER_ICONS_BASE_URL;
 interface CurrentWeatherInterface {
   currentWeather?: null | {

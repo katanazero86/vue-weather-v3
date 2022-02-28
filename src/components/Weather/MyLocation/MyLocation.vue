@@ -10,7 +10,7 @@
 <script>
 import {defineComponent} from 'vue';
 import MyLocationIcon from '@/components/Icons/MyLocationIcon.vue';
-import {checkGeolocationSupport, getCurrentPosition, handleGeolocationError} from '@/utils/geolocationUtils';
+import {checkGeolocationSupport, getCurrentPosition, handleGeolocationError} from '@/utils/geolocation-utils';
 
 const MyLocation = defineComponent({
   name: 'MyLocation',
