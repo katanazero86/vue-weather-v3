@@ -11,8 +11,8 @@
       <p class="project-info">
         해당 프로젝트는 openweathermap(https://openweathermap.org) API 를 활용하여 제작 되었습니다.<br/>
         Vue.js 3 로 작업을 진행하였으며, CSS Preprocessor 는 SCSS 가 적용이 되어있습니다.<br/>
-        vuex 및 vue-router 가 적용되어 있습니다. <br/>
-        typescript 가 적용되어 있습니다. <br/>
+        Pinia 및 vue-router 가 적용되어 있습니다. <br/>
+        TypesScript 가 적용되어 있습니다. <br/>
         Vite 를 이용하여, 프로젝트를 생성하였습니다. (Rollup.js 기반)
       </p>
     </div>
