@@ -1,7 +1,6 @@
 import axios from 'axios';
 import {AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
 
-console.log(process.env.VITE_BASE_URL);
 const BASE_URL: string = import.meta.env.VITE_BASE_URL.trim() || '';
 const api: AxiosInstance = axios.create({baseURL: BASE_URL});
 
