@@ -45,7 +45,7 @@
 - 컴포넌트(*.vue)명은 대문자로 시작(Index.vue or About.vue)
 - 컴포넌트 패키지는 PascalCase 로 작성(Table/Table.vue)
 - hooks 는 camelCase 로 작성하며, use 접두사로 시작
-- 이외에는 kebab-case 작성(weather-apis.ts, weather-store.ts 등)
+- 이외에는 kebab-case 작성(weather.repository.ts, weather.store.ts 등)
 - Pinia action 함수명 접미사는 **Action
 - API 메서드 접두사
   조회 : find**
@@ -54,3 +54,11 @@
   삭제 : delete**
 
 ```
+
+---
+- 2023년 1월 16일 변경내역   
+
+@tanstack/vue-query 패키지 추가 및 main.js 내에 VueQueryPlugin 초기화   
+package.json dependencies 최신화   
+pages 내에 About.vue 컴포넌트 삭제   
+WeatherIndex 컴포넌트내에 API 로직 @tanstack/vue-query 로 변경 

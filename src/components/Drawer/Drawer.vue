@@ -30,7 +30,7 @@ const route = useRoute();
 
 const navItems = [
   {name: 'Home', path: '/'},
-  {name: 'About', path: '/about'}
+  // {name: 'About', path: '/about'}
 ];
 
 const handleNavItemClick = path => {

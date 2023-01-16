@@ -1,17 +1,17 @@
-import {useIndexStore} from "@/stores";
+import {useRootStore} from "@/stores";
 
 export default function useApi() {
-    const indexStore = useIndexStore();
+    const rootStore = useRootStore();
 
     // fetch data
     const runApi = async (targetApi, apiParams): Promise<object> => {
-        indexStore.onIsLoadingAction();
+        rootStore.onIsLoadingAction();
         const apiResult = await targetApi(apiParams).catch(error => {
             // api error handling
             console.log(error.response.status, error.response.data?.message);
             return null;
         }).finally(() => {
-            indexStore.offIsLoadingAction();
+            rootStore.offIsLoadingAction();
         });
 
         if (apiResult.status === 200) {

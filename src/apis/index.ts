@@ -1,8 +1,7 @@
 import {api, axios} from '../utils/axios-utils';
 
-// apis
-import weatherApis from './weather/weather-apis';
+import {weatherRepository} from './weather/weather.repository';
 
-export default {
-    weatherApis: weatherApis(api, axios)
-}
+export const repositories = {
+    weatherRepository: weatherRepository(api, axios)
+};

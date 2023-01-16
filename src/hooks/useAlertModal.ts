@@ -1,6 +1,6 @@
 import {ref, Ref} from 'vue';
 
-export interface UseAlertModalInterface {
+export interface UseAlertModal {
     isOpen: Ref<boolean>;
     alertModalTitle: Ref<string>;
     alertModalContent: Ref<string>;
@@ -8,7 +8,7 @@ export interface UseAlertModalInterface {
     closeAlertModal(): void;
 }
 
-export default function useAlertModal(): UseAlertModalInterface {
+export default function useAlertModal(): UseAlertModal {
 
     const isOpen = ref(false);
     const openAlertModal = () => {

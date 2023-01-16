@@ -9,7 +9,7 @@
 
 <script lang="ts" setup>
 import {computed} from "vue";
-import {useIndexStore} from "@/stores";
+import {useRootStore} from "@/stores";
 
 interface SpinnerPropsInterface {
   small?: boolean;
@@ -21,9 +21,9 @@ const props = withDefaults(defineProps<SpinnerPropsInterface>(), {
   large: false,
 });
 
-const indexStore = useIndexStore();
+const rootStore = useRootStore();
 const isLoading = computed(() => {
-  return indexStore.getIsLoading;
+  return rootStore.getIsLoading;
 })
 
 </script>

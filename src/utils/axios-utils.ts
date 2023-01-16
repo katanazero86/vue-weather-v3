@@ -1,15 +1,13 @@
 import axios from 'axios';
-import {AxiosInstance, AxiosRequestConfig, AxiosResponse} from 'axios';
-
-const BASE_URL: string = import.meta.env.VITE_BASE_URL.trim() || '';
-const api: AxiosInstance = axios.create({baseURL: BASE_URL});
+import {AxiosRequestConfig, AxiosResponse} from 'axios';
+const BASE_URL = import.meta.env.VITE_BASE_URL.trim() || '';
+const api = axios.create({baseURL: BASE_URL});
 
 // request interceptor
 api.interceptors.request.use((config: AxiosRequestConfig) => {
     return config;
 }, (error) => {
-    console.log('request error');
-    console.log(error);
+    console.error('request error');
     return Promise.reject(error);
 });
 
@@ -17,8 +15,7 @@ api.interceptors.request.use((config: AxiosRequestConfig) => {
 api.interceptors.response.use((response: AxiosResponse) => {
     return response;
 }, (error) => {
-    console.log('response error');
-    console.log(error);
+    console.error('response error');
     return Promise.reject(error);
 });
 

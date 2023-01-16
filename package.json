@@ -8,21 +8,22 @@
     "upgrade": "npx npm-check-updates -u"
   },
   "dependencies": {
-    "apexcharts": "^3.33.1",
-    "axios": "^0.26.0",
-    "dayjs": "^1.10.7",
-    "express": "^4.17.2",
-    "pinia": "^2.0.11",
-    "vue": "^3.2.31",
-    "vue-router": "^4.0.12",
+    "@tanstack/vue-query": "^4.22.0",
+    "apexcharts": "^3.36.3",
+    "axios": "^1.2.2",
+    "dayjs": "^1.11.7",
+    "express": "^4.18.2",
+    "pinia": "^2.0.29",
+    "vue": "^3.2.45",
+    "vue-router": "^4.1.6",
     "vue3-apexcharts": "^1.4.1"
   },
   "devDependencies": {
-    "@types/node": "^17.0.18",
-    "@vitejs/plugin-vue": "^2.2.0",
-    "@vue/compiler-sfc": "^3.2.31",
-    "sass": "^1.49.7",
-    "typescript": "^4.5.5",
-    "vite": "^2.8.2"
+    "@types/node": "^18.11.18",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "@vue/compiler-sfc": "^3.2.45",
+    "sass": "^1.57.1",
+    "typescript": "^4.9.4",
+    "vite": "^4.0.4"
   }
 }

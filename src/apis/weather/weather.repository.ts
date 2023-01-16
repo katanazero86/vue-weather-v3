@@ -12,14 +12,14 @@ interface ByGeographicCoordinates {
     appId: string;
 }
 
-interface WeatherApisInterface {
+interface WeatherRepository {
     findCurrentWeatherByCity({q, appId}: ByCityNameInterface): Promise<any>;
     findCurrentWeatherByGeographicCoordinates({lat, lon, appId}: ByGeographicCoordinates): Promise<any>;
     findForecast5DaysByCity({q, appId}: ByCityNameInterface): Promise<any>;
     findForecast5DaysByGeographicCoordinates({lat, lon, appId}: ByGeographicCoordinates): Promise<any>;
 }
 
-export default (api, axios): WeatherApisInterface => {
+export const weatherRepository = (api, axios): WeatherRepository => {
 
     return {
         /**
@@ -28,8 +28,8 @@ export default (api, axios): WeatherApisInterface => {
          * @param q
          * @param appId
          */
-        async findCurrentWeatherByCity({q, appId}): Promise<any> {
-            return api.get(`/weather?q=${q}&appid=${appId}`)
+        async findCurrentWeatherByCity({q, appId}) {
+            return await api.get(`/weather?q=${q}&appid=${appId}`)
         },
 
         /**
@@ -38,8 +38,8 @@ export default (api, axios): WeatherApisInterface => {
          * @param lon
          * @param appId
          */
-        async findCurrentWeatherByGeographicCoordinates({lat, lon, appId}): Promise<any> {
-            return api.get(`/weather?lat=${lat}&lon=${lon}&appid=${appId}`)
+        async findCurrentWeatherByGeographicCoordinates({lat, lon, appId}) {
+            return await api.get(`/weather?lat=${lat}&lon=${lon}&appid=${appId}`)
         },
 
         /**
@@ -48,8 +48,8 @@ export default (api, axios): WeatherApisInterface => {
          * @param q
          * @param appId
          */
-        async findForecast5DaysByCity({q, appId}): Promise<any> {
-            return api.get(`/forecast?q=${q}&appid=${appId}`)
+        async findForecast5DaysByCity({q, appId}) {
+            return await api.get(`/forecast?q=${q}&appid=${appId}`)
         },
 
         /**
@@ -58,8 +58,8 @@ export default (api, axios): WeatherApisInterface => {
          * @param lon
          * @param appId
          */
-        async findForecast5DaysByGeographicCoordinates({lat, lon, appId}): Promise<any> {
-            return api.get(`/forecast?lat=${lat}&lon=${lon}&appid=${appId}`)
+        async findForecast5DaysByGeographicCoordinates({lat, lon, appId}) {
+            return await api.get(`/forecast?lat=${lat}&lon=${lon}&appid=${appId}`)
         }
     };
-}
+};

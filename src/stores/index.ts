@@ -4,7 +4,7 @@ interface StateInterface {
     isLoading: boolean;
 }
 
-export const useIndexStore = defineStore('index', {
+export const useRootStore = defineStore('index', {
     state: (): StateInterface => {
         return {
             isLoading: false,
