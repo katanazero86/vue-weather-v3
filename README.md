@@ -23,10 +23,8 @@
 ---
 
 > ### project 배포(deploy) <br/>
-> - https://www.heroku.com/ - 헤로쿠 클라우드 플랫폼을 이용하여 배포
-> - 헤로쿠 배포를 위한 express 서버 모듈 설치 및 server/server.js 작성
-> - 헤로쿠가 서버를 실행할 수 있도록, package.json 스크립트 추가(`"start": "node ./server/server.js"`)
-> - https://zero86.herokuapp.com
+> - https://vercel.com/ - 버셀을 이용하여 배포
+> - https://vue-weather-v3.vercel.app/
 
 ---
 
@@ -61,4 +59,5 @@
 @tanstack/vue-query 패키지 추가 및 main.js 내에 VueQueryPlugin 초기화   
 package.json dependencies 최신화   
 pages 내에 About.vue 컴포넌트 삭제   
-WeatherIndex 컴포넌트내에 API 로직 @tanstack/vue-query 로 변경 
+WeatherIndex 컴포넌트내에 API 로직 @tanstack/vue-query 로 변경   
+vercel 배포로 변경
