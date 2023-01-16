@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts" setup>
-import {computed, reactive, ref, Ref, toRef, watch, watchEffect} from "vue";
+import {computed, reactive, ref, Ref, toRef, watch} from "vue";
 import MyLocation from "@/components/Weather/MyLocation/MyLocation.vue";
 import CurrentWeather from "@/components/Weather/CurrentWeather/CurrentWeather.vue";
 import Forecast5Days from "@/components/Weather/Forecast5Days/Forecast5Days.vue";
@@ -39,7 +39,7 @@ const lon = ref('');
 const enableStates = reactive({
   isQuery: ref(false),
   isGeo: ref(false),
-})
+});
 
 const findCurrentWeatherByCitySuccess = (result: AxiosResponse) => {
   if (result.status === 200) {
@@ -52,7 +52,7 @@ const findCurrentWeatherByCityError = (err: AxiosError) => {
 const findCurrentWeatherByCityQuery = useFindCurrentWeatherByCity(findCurrentWeatherByCitySuccess, findCurrentWeatherByCityError, {
   q,
   appId: API_KEY,
-  isEnable: toRef(enableStates, "isQuery"),
+  isEnable: toRef(enableStates, 'isQuery'),
 });
 
 const findForecast5DaysByCitySuccess = (result: AxiosResponse) => {
@@ -66,7 +66,7 @@ const findForecast5DaysByCityError = (err: AxiosError) => {
 const findForecast5DaysByCityQuery = useFindForecast5DaysByCity(findForecast5DaysByCitySuccess, findForecast5DaysByCityError, {
   q,
   appId: API_KEY,
-  isEnable: toRef(enableStates, "isQuery"),
+  isEnable: toRef(enableStates, 'isQuery'),
 });
 
 const findCurrentWeatherByGeographicCoordinatesSuccess = (result: AxiosResponse) => {
@@ -81,7 +81,7 @@ const findCurrentWeatherByGeographicCoordinatesQuery = useFindCurrentWeatherByGe
   lat,
   lon,
   appId: API_KEY,
-  isEnable: toRef(enableStates, "isGeo"),
+  isEnable: toRef(enableStates, 'isGeo'),
 });
 
 const findForecast5DaysByGeographicCoordinatesSuccess = (result: AxiosResponse) => {
@@ -96,7 +96,7 @@ const findForecast5DaysByGeographicCoordinatesQuery = useFindForecast5DaysByGeog
   lat,
   lon,
   appId: API_KEY,
-  isEnable: toRef(enableStates, "isGeo"),
+  isEnable: toRef(enableStates, 'isGeo'),
 });
 
 const rootStore = useRootStore();
